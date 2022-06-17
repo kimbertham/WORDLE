@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import mongoose  from 'mongoose'
-import express from 'express'
-import { json } from 'body-parser'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const  express = require('express')
+const { json } = require('body-parser')
 require('dotenv').config()
 import { router } from './router'
 
