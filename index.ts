@@ -3,7 +3,6 @@ import mongoose  from 'mongoose'
 import express from 'express'
 import { json } from 'body-parser'
 require('dotenv').config()
-
 import { router } from './router'
 
 const app = express()
