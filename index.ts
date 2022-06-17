@@ -30,7 +30,7 @@ app.use(json())
 app.use('/api', router)
 
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log('listening on port 8000')
 })
 
