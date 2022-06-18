@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const  Response = require('express/response')
+const  Response = require('express/')
 const { userModel } = require('./userModel')
 import  { ICustomReq } from './customReq'
 const jwt = require('jsonwebtoken')
