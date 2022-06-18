@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { Response } = require('express')
+const  Response = require('express/response')
 const { userModel } = require('./userModel')
 import  { ICustomReq } from './customReq'
 const jwt = require('jsonwebtoken')
 const secret = 'secret'
 
 
-export const secureRoute = async (req:ICustomReq, res:Response, next: (arg0?: unknown) => void) => {
+export const secureRoute = async (req:ICustomReq, res:typeof Response, next: (arg0?: unknown) => void) => {
   try {
     if (!req.headers.authorization) throw new Error('Unauthorized, No Token')
     const token = req.headers.authorization.replace('Bearer ', '')
