@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const mongoose = require( 'mongoose')
+import * as mongoose from 'mongoose'
 const bcrypt = require('bcrypt')
 
 export interface IUser {
