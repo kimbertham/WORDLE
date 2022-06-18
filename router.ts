@@ -2,12 +2,9 @@
 const secureRoute = require('./auth/secureRoute').secureRoute
 const soloControllers = require('./controllers/soloControllers')
 const friendControllers = require('./controllers/friendControllers')
-
-
-
 const auth = require('./auth/authControlers')
 
-import { Router } from 'express'
+const { Router } = require('express')
 export const router = Router()
 
 router.route('/login')
