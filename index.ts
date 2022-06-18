@@ -22,9 +22,10 @@ db.once('open', function () {
 
 
 app.use(express.static(`${__dirname}/dist`))
-app.use(json())
-app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 
+app.use(json())
+
+app.get('/*', (req: any, res: { sendFile: (arg0: string) => any }) => res.sendFile(`${__dirname}/dist/index.html`))
 
 app.use('/api', router)
 
