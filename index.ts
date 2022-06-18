@@ -20,12 +20,8 @@ db.once('open', function () {
   console.log('Connected successfully')
 })
 
-
-app.use(express.static(`${__dirname}/dist`))
-
 app.use(json())
 
-app.get('/*', (req: any, res: { sendFile: (arg0: string) => any }) => res.sendFile(`${__dirname}/dist/index.html`))
 
 app.use('/api', router)
 

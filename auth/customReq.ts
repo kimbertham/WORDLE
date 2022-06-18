@@ -1,4 +1,3 @@
-
 import { IUser } from './userModel'
 import { Request } from  'express'
 
