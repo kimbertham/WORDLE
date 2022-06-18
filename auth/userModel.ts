@@ -1,5 +1,6 @@
-import * as mongoose from 'mongoose'
-import * as bcrypt from 'bcrypt' 
+/* eslint-disable @typescript-eslint/no-var-requires */
+const mongoose = require( 'mongoose')
+const bcrypt = require('bcrypt')
 
 export interface IUser {
     _id?:string;

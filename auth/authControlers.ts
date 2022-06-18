@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { userModel } from './userModel'
 import { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
+const jwt = require('jsonwebtoken')
 import { ICustomReq } from './customReq'
 const secret = 'secret'
 
