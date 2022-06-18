@@ -6,8 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node ./index.ts",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/index.js",
+    "watch-ts": "tsc -w",
     "dev": "nodemon ./index.ts"
   },
+  "engines": { "node": "15.6.0" },
   "eslintConfig": {
     "extends": [
       "typescript",
