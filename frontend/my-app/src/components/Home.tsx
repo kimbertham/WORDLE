@@ -9,43 +9,42 @@ const Home = () => {
 
   console.log('SoloGame')
   
-  // const [result, setResult] = useState<boolean>(false)
-  // const [word, setWord] = useState<string>('')
-  // const [game , setGame] = useState <IPlayer[]>()
+  const [result, setResult] = useState<boolean>(false)
+  const [word, setWord] = useState<string>('')
+  const [game , setGame] = useState <IPlayer[]>()
 
-  // useEffect(() => {
-  //   getLastGame()
-  // }, [])
+  useEffect(() => {
+    getLastGame()
+  }, [])
 
-  // const getLastGame = async () => {
-  //   const res = (await axios.get('api/getLastSolo', headers)).data
-  //   if (res.length <= 0)  {
-  //     getWord()
-  //     setGame([])
-  //   } else {
-  //     setWord(res[0].word)
-  //     setGame(res)
-  //   }
-  // }
+  const getLastGame = async () => {
+    const res = (await axios.get('api/getLastSolo', headers)).data
+    if (res.length <= 0)  {
+      getWord()
+      setGame([])
+    } else {
+      setWord(res[0].word)
+      setGame(res)
+    }
+  }
 
 
   
-  // const getWord = async () => setWord(await getRandom())
-  // if (!game || !word) return null
+  const getWord = async () => setWord(await getRandom())
+  if (!game || !word) return null
   return (
-    <div></div>
-    // <>
-    //   {result &&
-    //   <Result 
-    //     word={word}
-    //     setResult={setResult}/>}
+    <>
+      {result &&
+      <Result 
+        word={word}
+        setResult={setResult}/>}
 
-  //   <Main
-  //     game={game[0]}
-  //     word={word.split('')}
-  //     setResult={setResult}/>
+      <Main
+        game={game[0]}
+        word={word.split('')}
+        setResult={setResult}/>
       
-  // </>
+    </>
   )
 }
 

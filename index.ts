@@ -27,11 +27,11 @@ app.use(json())
 app.use('/api', router)
 
 
-app.get('*', function(req: any, res: { sendFile: (arg0: string) => void }) {
-  res.sendFile(path.join(__dirname, '/frontend/my-app/src'))
-})
+// app.get('*', function(req: any, res: { sendFile: (arg0: string) => void }) {
+//   res.sendFile(path.join(__dirname, '/frontend/my-app/src'))
+// })
 
-app.use(express.static(path.join(__dirname, 'dist')))
+// app.use(express.static(path.join(__dirname, 'dist')))
 
 
 app.listen(PORT, () => {
