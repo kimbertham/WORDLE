@@ -28,7 +28,7 @@ app.use('/api', router)
 
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'dist/frontend/my-app/build')))
+  app.use(express.static(path.join('/frontend/my-app/build')))
 
 
   app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
