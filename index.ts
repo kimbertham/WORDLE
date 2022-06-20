@@ -29,7 +29,7 @@ app.use('/api', router)
 
 
 app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
-  res.sendFile(path.resolve('frontend', 'my-app', 'public', 'index.html' ))
+  res.sendFile(path.resolve(__dirname, 'frontend', 'my-app', 'public', 'index.html' ))
 })
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
