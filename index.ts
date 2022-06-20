@@ -24,9 +24,9 @@ db.once('open', function () {
 
 app.use(express.static(__dirname + '/dist/'))
 
-app.get('*', function (_request: any, response: { sendFile: (arg0: any) => void }) {
-  response.sendFile(path.resolve(__dirname, './frontend/my-app/build', 'index.html'))
-})
+// app.get('*', function (_request: any, response: { sendFile: (arg0: any) => void }) {
+//   response.sendFile(path.resolve(__dirname, './frontend/my-app/build', 'index.html'))
+// })
 
 app.use(json())
 
