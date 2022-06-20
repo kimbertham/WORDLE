@@ -26,12 +26,12 @@ app.use(json())
 
 app.use('/api', router)
 
-app.use(express.static(path.join(__dirname, 'dist')))
 
 app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
   res.sendFile(path.resolve(__dirname, 'frontend', 'my-app', 'build', 'index.html' ))
 })
 
+app.use(express.static(path.join(__dirname, 'dist')))
 
 app.listen(PORT, () => {
   console.log('listening on port 8000')
