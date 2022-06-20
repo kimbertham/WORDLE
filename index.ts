@@ -7,6 +7,8 @@ import { router } from './router'
 
 const app = express()
 const PORT = process.env.PORT || 8000
+const distDir = __dirname + '/dist/'
+
 
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.iagak.mongodb.net/wurdle?retryWrites=true&w=majority`
@@ -20,10 +22,10 @@ db.on('error', console.error.bind(console, 'connection error: '))
 db.once('open', function () {
   console.log('Connected successfully')
 })
-
 app.use(json())
 
 
+app.use(express.static(distDir))
 app.use('/api', router)
 
 
