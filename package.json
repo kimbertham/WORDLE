@@ -9,7 +9,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node ./index.ts",
-    "postinstall" : "tsc",
     "dev": "nodemon ./index.ts"
   },
   "eslintConfig": {
