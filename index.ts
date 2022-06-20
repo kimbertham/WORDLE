@@ -22,6 +22,9 @@ db.once('open', function () {
 })
 
 app.use(express.static(__dirname + '/dist/'))
+app.use('/*', (req: any, res: { sendFile: (arg0: string) => any }) => res.sendFile(`${__dirname}/frontend/build/index.html`))
+
+
 
 app.use(json())
 
