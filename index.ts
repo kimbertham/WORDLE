@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join('frontend/build')))
 
   app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html' ))
+    res.sendFile(path.resolve('frontend', 'build', 'index.html' ))
   })
 }
 
