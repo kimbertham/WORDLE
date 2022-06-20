@@ -6,8 +6,6 @@ import Main from './Game/Main'
 import Result from './Game/Result'
 
 const Home = () => {
-
-  console.log('SoloGame')
   
   const [result, setResult] = useState<boolean>(false)
   const [word, setWord] = useState<string>('')
@@ -28,8 +26,6 @@ const Home = () => {
     }
   }
 
-
-  
   const getWord = async () => setWord(await getRandom())
   if (!game || !word) return null
   return (

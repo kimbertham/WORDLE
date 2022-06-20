@@ -31,7 +31,7 @@ app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
   res.sendFile(path.resolve('frontend', 'my-app', 'build', 'index.html' ))
 })
 
-// app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname, 'dist')))
 
 app.listen(PORT, () => {
   console.log('listening on port 8000')

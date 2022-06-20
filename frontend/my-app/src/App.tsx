@@ -8,7 +8,6 @@ import NewGame from './components/Friend/New'
 
 const App = () => {
   const [friend, setFriend] = useState<string>('')
-  console.log('called')
   return ( 
 
     <BrowserRouter>
