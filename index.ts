@@ -22,12 +22,13 @@ db.once('open', function () {
   console.log('Connected successfully')
 })
 
-app.use(express.static(path.join(__dirname, 'dist')))
 
+app.use(express.static(path.join(__dirname, 'public')))
 
-// app.get('*', function (_request: any, response: { sendFile: (arg0: any) => void }) {
-//   response.sendFile(path.resolve(__dirname, './frontend/my-app/build', 'index.html'))
-// })
+app.get('*', function(req: any, res: { sendFile: (arg0: string) => void }) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
 
 app.use(json())
 
