@@ -22,17 +22,16 @@ db.once('open', function () {
   console.log('Connected successfully')
 })
 
-
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.get('*', function(req: any, res: { sendFile: (arg0: string) => void }) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-
 app.use(json())
 
 app.use('/api', router)
+
+
+app.get('*', function(req: any, res: { sendFile: (arg0: string) => void }) {
+  res.sendFile(path.join(__dirname, '/frontend/my-app/public', 'index.html'))
+})
+
+app.use(express.static(path.join(__dirname, 'dist')))
 
 
 app.listen(PORT, () => {
