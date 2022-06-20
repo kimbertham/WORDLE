@@ -8,7 +8,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall":  "tsc && mv -i -v frontend/public dist/frontend && rm -v -rf src",
+    "postinstall": "tsc && mv -i -v frontend/public dist/frontend && rm -v -rf src",
     "start": "node dist/index.js",
     "dev": "tsc --watch  && nodemon -q dist/index.js"
   },
@@ -32,7 +32,7 @@
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.3",
     "nodemon": "^2.0.16",
-    "react-router-dom":"^5.3.0",
+    "react-router-dom": "^5.3.0",
     "ts-node": "^10.8.1"
   },
   "devDependencies": {
