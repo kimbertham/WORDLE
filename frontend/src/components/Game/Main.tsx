@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IPlayer, IGame } from '../../types'
-import { headers } from '../../lib'
+import { headers, userId } from '../../lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 
@@ -13,6 +13,7 @@ interface MainProps {
   setResult:React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const id = userId()
 const Main = ({ game, word, setResult }: MainProps) => {
 
   const [arr, setArr] = useState<string[]>([])
@@ -26,9 +27,10 @@ const Main = ({ game, word, setResult }: MainProps) => {
   },[guess])
 
   const newGame = async () => {
-    console.log('test')
+    if (id) {
     const res = await axios.post('api/newSoloGame/', { word: word.join('') }, headers)
     setPlayer(res.data)
+    }
     addGuess()
   }
   
@@ -39,11 +41,11 @@ const Main = ({ game, word, setResult }: MainProps) => {
     } else if ( arr !== word && guess.length === 6){
       completeGame()
     }
-    await axios.post(`/api/updateGame/${player?._id}` , { guesses: guess } ,headers)
+    id && await axios.post(`/api/updateGame/${player?._id}` , { guesses: guess } ,headers)
   }
 
   const completeGame = async () => {
-    await axios.post(`/api/completeGame/${player?._id}`,{}, headers)
+    id && await axios.post(`/api/completeGame/${player?._id}`,{}, headers)
     setDisabled(true)
     setResult(true)
   }
