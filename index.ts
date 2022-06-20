@@ -28,14 +28,16 @@ app.use('/api', router)
 
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'dist')))
+  app.use(express.static(path.join(__dirname, 'dist/frontend/my-app/build')))
+
+
+  app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html' ))
+  })
 
 }
 
 
-app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html' ))
-})
 
 
 app.listen(PORT, () => {
