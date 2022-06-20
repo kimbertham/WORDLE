@@ -6,5 +6,6 @@
     "titleBar.activeBackground":  "#d65f7f",
     "titleBar.inactiveBackground":   "#9c2142"
   },
-  "window.title": "Back-End"
+  "window.title": "Back-End",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
