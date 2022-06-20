@@ -27,15 +27,11 @@ app.use(json())
 app.use('/api', router)
 
 
-app.use(express.static(path.join('/frontend//build')))
+app.use(express.static(path.join('frontend/build')))
 
 app.get('*', (req: any, res: { sendFile: (arg0: string) => void }) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html' ))
 })
-
-
-
-
 
 
 app.listen(PORT, () => {
