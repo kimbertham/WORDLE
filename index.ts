@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import mongoose  from 'mongoose'
+import path from 'path'
 const  express = require('express')
 const { json } = require('body-parser')
 require('dotenv').config()
@@ -22,9 +23,10 @@ db.once('open', function () {
 })
 
 app.use(express.static(__dirname + '/dist/'))
-app.use('/*', (req: any, res: { sendFile: (arg0: string) => any }) => res.sendFile(`${__dirname}/frontend/build/index.html`))
 
-
+app.get('*', function (_request: any, response: { sendFile: (arg0: any) => void }) {
+  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
+})
 
 app.use(json())
 
