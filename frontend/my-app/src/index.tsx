@@ -5,6 +5,7 @@ import './main.scss'
 
 import { StrictMode } from 'react'
 
+console.log('index')
 
 const rootElement : any = document.getElementById('root')
 const root = createRoot(rootElement)
