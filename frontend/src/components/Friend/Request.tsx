@@ -21,7 +21,6 @@ const Request = ({ setCurrentRound, currentRound }:RequestProps) => {
   const accept = () => {
     history.push(`/new/${currentRound?.friendship}/${currentRound?._id}`)
   }
-  console.log(process.env)
 
   if (!currentRound) return null
   return (

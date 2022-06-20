@@ -1,8 +1,6 @@
 import axios from 'axios' 
 export const headers = { headers: { Authorization: `Bearer ${ window.localStorage.getItem('token')}` } }
 
-
-
 export const userId = () => {
   const token = window.localStorage.getItem('token')?.split('.')
   if (token) return JSON.parse(window.atob(token[1])).sub

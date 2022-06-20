@@ -19,7 +19,7 @@ const Head = ({ friend }: HeadProps) => {
           setMenu(!menu)
           setFriendMenu(false)
           setSoloMenu(false)
-        }}/>
+        }} alt='menu'/>
 
         <div className='logo'>Wurhdle</div>
 
@@ -32,7 +32,7 @@ const Head = ({ friend }: HeadProps) => {
               setSoloMenu(!soloMenu)
               setMenu(false)
             } 
-          } }/>
+          }} alt='menu'/>
       </div>
 
       {menu && <Menu/>}

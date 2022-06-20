@@ -24,10 +24,12 @@ db.once('open', function () {
 });
 app.use(json());
 app.use('/api', router_1.router);
-app.get('*', function (req, res) {
-    res.sendFile(path_1.default.resolve(__dirname, 'build', 'index.html'));
-});
-// app.use(express.static(path.join(__dirname, 'dist')))
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path_1.default.join('/frontend/my-app/build')));
+    app.get('*', function (req, res) {
+        res.sendFile(path_1.default.resolve(__dirname, 'public', 'index.html'));
+    });
+}
 app.listen(PORT, function () {
     console.log('listening on port 8000');
 });
