@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { date } from 'faker'
 import React, { useEffect, useState } from 'react'
 import { headers } from '../../lib'
 import { IUser, IFriend } from '../../types'
