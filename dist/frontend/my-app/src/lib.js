@@ -50,18 +50,22 @@ var userId = function () {
 };
 exports.userId = userId;
 //---------- Words
-exports.wordHeaders = { headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_KEY,
-        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
-    }
+var wordHeaders = function () {
+    if (process.env.REACT_APP_RAPID_KEY)
+        return ({ headers: {
+                'X-RapidAPI-Key': process.env.REACT_APP_RAPID_KEY,
+                'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+            }
+        });
 };
+exports.wordHeaders = wordHeaders;
 var checkWord = function (word) { return __awaiter(void 0, void 0, void 0, function () {
     var err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, axios_1.default.get("https://wordsapiv1.p.rapidapi.com/words/".concat(word), exports.wordHeaders)];
+                return [4 /*yield*/, axios_1.default.get("https://wordsapiv1.p.rapidapi.com/words/".concat(word), (0, exports.wordHeaders)())];
             case 1:
                 _a.sent();
                 return [2 /*return*/, true];
@@ -75,18 +79,19 @@ var checkWord = function (word) { return __awaiter(void 0, void 0, void 0, funct
 exports.checkWord = checkWord;
 var getRandom = function () { return __awaiter(void 0, void 0, void 0, function () {
     var res, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, axios_1.default.get('https://wordsapiv1.p.rapidapi.com/words/', { params: { random: 'true', letters: 5, frequencymax: 8, partOfSpeech: 'verb', letterPattern: '^[A-Za-z]+$' },
-                        headers: exports.wordHeaders.headers
+                        headers: (_a = (0, exports.wordHeaders)()) === null || _a === void 0 ? void 0 : _a.headers
                     })];
             case 1:
-                res = _a.sent();
+                res = _b.sent();
                 return [2 /*return*/, res.data.word.toUpperCase().replace(/\s/g, '')];
             case 2:
-                err_2 = _a.sent();
+                err_2 = _b.sent();
                 console.log(err_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -100,7 +105,7 @@ var getDef = function (word) { return __awaiter(void 0, void 0, void 0, function
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, axios_1.default.get("https://wordsapiv1.p.rapidapi.com/words/".concat(word, "/definitions"), { headers: exports.wordHeaders.headers })];
+                return [4 /*yield*/, axios_1.default.get("https://wordsapiv1.p.rapidapi.com/words/".concat(word, "/definitions"), (0, exports.wordHeaders)())];
             case 1:
                 res = _a.sent();
                 return [2 /*return*/, res.data];
