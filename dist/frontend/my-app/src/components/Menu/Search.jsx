@@ -83,7 +83,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
-var faker_1 = require("faker");
 var react_1 = __importStar(require("react"));
 var lib_1 = require("../../lib");
 var Search = function (_a) {
@@ -120,7 +119,7 @@ var Search = function (_a) {
     return (<>
       <div className='mField'>
         <div className='search'>
-          <input placeholder='Search for friends' onChange={function (e) { return setData(__assign(__assign({}, faker_1.date), { username: e.target.value })); }}/>
+          <input placeholder='Search for friends' onChange={function (e) { return setData(__assign(__assign({}, data), { username: e.target.value })); }}/>
         </div>
       </div>
 

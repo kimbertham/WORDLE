@@ -68,6 +68,7 @@ var lib_1 = require("../lib");
 var Main_1 = __importDefault(require("./Game/Main"));
 var Result_1 = __importDefault(require("./Game/Result"));
 var Home = function () {
+    console.log('SoloGame');
     var _a = (0, react_1.useState)(false), result = _a[0], setResult = _a[1];
     var _b = (0, react_1.useState)(''), word = _b[0], setWord = _b[1];
     var _c = (0, react_1.useState)(), game = _c[0], setGame = _c[1];
@@ -93,7 +94,6 @@ var Home = function () {
             }
         });
     }); };
-    console.log(word);
     var getWord = function () { return __awaiter(void 0, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:

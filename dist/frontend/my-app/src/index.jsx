@@ -8,6 +8,7 @@ var client_1 = require("react-dom/client");
 var App_1 = __importDefault(require("./App"));
 require("./main.scss");
 var react_2 = require("react");
+console.log('index');
 var rootElement = document.getElementById('root');
 var root = (0, client_1.createRoot)(rootElement);
 root.render(<react_2.StrictMode>

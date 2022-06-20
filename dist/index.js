@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/no-var-requires */
 var mongoose_1 = __importDefault(require("mongoose"));
+var path_1 = __importDefault(require("path"));
 var express = require('express');
 var json = require('body-parser').json;
 require('dotenv').config();
@@ -23,6 +24,10 @@ db.once('open', function () {
 });
 app.use(json());
 app.use('/api', router_1.router);
+app.get('*', function (req, res) {
+    res.sendFile(path_1.default.resolve(__dirname, 'build', 'index.html'));
+});
+// app.use(express.static(path.join(__dirname, 'dist')))
 app.listen(PORT, function () {
     console.log('listening on port 8000');
 });

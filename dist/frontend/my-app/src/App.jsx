@@ -35,6 +35,7 @@ var Home_1 = __importDefault(require("./components/Home"));
 var New_1 = __importDefault(require("./components/Friend/New"));
 var App = function () {
     var _a = (0, react_1.useState)(''), friend = _a[0], setFriend = _a[1];
+    console.log('called');
     return (<react_router_dom_1.BrowserRouter>
       <Head_1.default friend={friend}/>
       <react_router_dom_1.Switch>
