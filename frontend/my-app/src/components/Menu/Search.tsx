@@ -34,7 +34,7 @@ const Search = ({ friends }: SearchProps) => {
         <div className='search'>
           <input 
             placeholder='Search for friends'
-            onChange={(e) => setData({ ...date, username: e.target.value })}/>
+            onChange={(e) => setData({ ...data, username: e.target.value })}/>
         </div>
       </div>
 
