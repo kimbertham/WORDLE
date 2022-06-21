@@ -64,24 +64,24 @@ input {
   @extend .center;
   width: 60px;
   height: 60px;
-  margin: 2px;
-  border: 2px solid rgb(213, 213, 213);
+  margin: 3px;
+  border: 2px solid #d4d6da;
   font-weight: bold;
 }
 
 .keyboard {
   @extend .center, .mw;
   padding: 5px 0;
-  height: 25%;
 
   .key {
     @extend .center;
       width: 33px;
       height: 60px;
       margin: 2px;
+      font-size: 13px;
       font-weight: bold;
       border-radius: 5px;
-      background-color: rgb(224, 224, 224);
+      background-color: #d4d6da;
 
     }
     
@@ -147,17 +147,16 @@ input {
   height: 7%;
   flex-direction: row;
   justify-content: space-between;
-  background-color: rgb(244, 244, 244);
+  border-bottom: 2px solid #d4d6da;
 
   .navItem { 
     margin: 0 20px; 
-    max-width: 30px;
+    max-width: 35px;
     }
 
   h1 {
-    font-weight: bold;
-    font-size: 1.5em;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-size: 1.8em;
+    font-family: 'Bevan', cursive;
     }
   }
 
