@@ -60,12 +60,14 @@ input {
 
 //-----game ----------------
 
+
 .letter {
   @extend .center;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   margin: 3px;
   border: 2px solid #d4d6da;
+  font-size: 20px;
   font-weight: bold;
 }
 
