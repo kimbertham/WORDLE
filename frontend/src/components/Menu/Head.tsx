@@ -13,7 +13,7 @@ const Head = ({ friend }: HeadProps) => {
   const [soloMenu,setSoloMenu] = useState(false)
   return (
 
-    <div className='navCont'>
+    <>
       <div className='nav'>
         <img src={require('../../styles/menu.jpg')} className='navItem' onClick={() => {
           setMenu(!menu)
@@ -21,7 +21,7 @@ const Head = ({ friend }: HeadProps) => {
           setSoloMenu(false)
         }} alt='menu'/>
 
-        <div className='logo'>Wurhdle</div>
+        <h1>Wurhdle</h1>
 
         <img src={require('../../styles/time.jpg')} className='navItem'
           onClick={() => {
@@ -39,7 +39,7 @@ const Head = ({ friend }: HeadProps) => {
       {friendMenu &&  <FriendMenu _id={friend}/>}
       {soloMenu &&  <SoloMenu/>}
 
-    </div>
+    </>
   )
 }
 

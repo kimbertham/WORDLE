@@ -12,14 +12,16 @@ const App = () => {
 
     <BrowserRouter>
       <Head friend={friend} />
-      <Switch>
-        <Route  path='/login' component={Login}/> 
-        <Route  path='/friend/:id/' component={() => <Friend setFriend={setFriend}/>}/> 
-        <Route path='/new/:friend/:game' component={NewGame} />
-        <Route path='/new/:friend' component={NewGame} />
-        <Route exact path='/' component={SoloGame}/> 
+      <div className='main'>
+        <Switch>
+          <Route  path='/login' component={Login}/> 
+          <Route  path='/friend/:id/' component={() => <Friend setFriend={setFriend}/>}/> 
+          <Route path='/new/:friend/:game' component={NewGame} />
+          <Route path='/new/:friend' component={NewGame} />
+          <Route exact path='/' component={SoloGame}/> 
 
-      </Switch> 
+        </Switch> 
+      </div>
 
     
     </BrowserRouter> 

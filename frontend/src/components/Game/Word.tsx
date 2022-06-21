@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import React from 'react'
 
 interface WordProps { 
@@ -23,10 +21,10 @@ const Word = ({ word, arr, guess } :WordProps) => {
     </div>
 
   return (
-    <div className='wordRow'>
+    <div className='center fgrow'>
 
       {[...Array(6)].map((e,i) => 
-        <div className='flex fw' key={i}>
+        <div className='flex' key={i}>
           {guess.length === i ? [...Array(word.length)].map((l,e) =>currentGuess(i,e))
             :  i < guess.length  ?  [...Array(word.length)].map((l,e) => pastGuess(i,e))
               : [...Array(word.length)].map((l,i) => <div key={i} className='letter'></div>)

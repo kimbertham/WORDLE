@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IPlayer, IGame } from '../../types'
-import { headers, userId } from '../../lib'
+import { getToken, headers } from '../../lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 
@@ -13,13 +12,13 @@ interface MainProps {
   setResult:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const id = userId()
 const Main = ({ game, word, setResult }: MainProps) => {
-
   const [arr, setArr] = useState<string[]>([])
   const [player,setPlayer] = useState<IPlayer | null>(game ? game : null)
   const [guess, setGuess] = useState<string[]>( game?.guesses || [])
   const [disabled,setDisabled] = useState<boolean>(game?.completed ? true : false)
+  const token = getToken()
+
 
   useEffect(() => {
     arr.length > 0 && updateGame()
@@ -27,9 +26,9 @@ const Main = ({ game, word, setResult }: MainProps) => {
   },[guess])
 
   const newGame = async () => {
-    if (id) {
-    const res = await axios.post('api/newSoloGame/', { word: word.join('') }, headers)
-    setPlayer(res.data)
+    if (token) {
+      const res = await axios.post('api/newSoloGame/', { word: word.join('') }, headers)
+      setPlayer(res.data)
     }
     addGuess()
   }
@@ -41,11 +40,11 @@ const Main = ({ game, word, setResult }: MainProps) => {
     } else if ( arr !== word && guess.length === 6){
       completeGame()
     }
-    id && await axios.post(`/api/updateGame/${player?._id}` , { guesses: guess } ,headers)
+    token && await axios.post(`/api/updateGame/${player?._id}` , { guesses: guess } ,headers)
   }
 
   const completeGame = async () => {
-    id && await axios.post(`/api/completeGame/${player?._id}`,{}, headers)
+    token && await axios.post(`/api/completeGame/${player?._id}`,{}, headers)
     setDisabled(true)
     setResult(true)
   }
@@ -55,7 +54,7 @@ const Main = ({ game, word, setResult }: MainProps) => {
   }
 
   return (
-    <div className='main'>
+    <div className='fh flex fcol'>
     
       <Word 
         arr={arr}

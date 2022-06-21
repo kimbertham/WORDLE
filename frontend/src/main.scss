@@ -4,20 +4,26 @@
   margin: 0;
 }
 
-body {
-  height: 100%;
-}
-
-
-#root{
-  height: 100%;
-}
+body {height: 100%;}
+#root{height: 100%;}
+.main {height: 93%;}
 
 html{
   height: 100%;
   position: fixed;
   width: 100%;
 }
+
+
+
+.flex { display: flex}
+.fgrow {flex-grow: 1}
+.fcol {flex-direction: column;}
+
+.mw { width: 100vw}
+.fw {width: 100%}
+.fh {height: 100%}
+
 
 input {
   padding: 0 10px;
@@ -33,14 +39,6 @@ input {
   flex-direction: column
 }
 
-.flex { display: flex}
-.fgrow {flex-grow: 1}
-.mw { width: 100vw}
-.fw {width: 100%}
-
-.main {
-  @extend .center, .fgrow;
-}
 
 .button {
   outline: none;
@@ -62,23 +60,6 @@ input {
 
 //-----game ----------------
 
-.ngm {
-  @extend .center, .fw;
-  height: 90vh;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  button {
-    padding: 10px 20px;
-  }
-}
-
-.wordRow {
-  @extend .center, .fgrow;
-  margin:0 20px ;
-}
-
-
 .letter {
   @extend .center;
   width: 60px;
@@ -89,15 +70,16 @@ input {
 }
 
 .keyboard {
-  @extend .center;
-  max-width: 100vw;
-  padding: 5px;
+  @extend .center, .mw;
+  padding: 5px 0;
+  height: 25%;
 
   .key {
     @extend .center;
       width: 33px;
       height: 60px;
       margin: 2px;
+      font-weight: bold;
       border-radius: 5px;
       background-color: rgb(224, 224, 224);
 
@@ -134,8 +116,7 @@ input {
 //----------auth=-------------
 
 .auth{
-  @extend .center;
-  height: 100%;
+  @extend .center, .fh;
 
   h1{
   margin:15px;
@@ -160,16 +141,10 @@ input {
 }
 
 //----nav ------------------
-
-.navCont{
-  position: relative;
-  height: 10vh;
-
-  .nav {
+.nav {
   @extend .flex, .center, .mw;
   z-index: 1001;
-  position: fixed;
-  height: 10vh;
+  height: 7%;
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(244, 244, 244);
@@ -178,13 +153,14 @@ input {
     margin: 0 20px; 
     max-width: 30px;
     }
+
+  h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
   }
-}
-.logo {
-  font-weight: bold;
-  font-size: 30px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+
 
 //----menu ---------------------
 
