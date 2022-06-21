@@ -4,11 +4,16 @@
   margin: 0;
 }
 
-html{
+body {
   height: 100%;
 }
 
-#root {
+
+#root{
+  height: 100%;
+}
+
+html{
   height: 100%;
   position: fixed;
   width: 100%;
@@ -130,7 +135,7 @@ input {
 
 .auth{
   @extend .center;
-  // height: 90vh;
+  height: 100%;
 
   h1{
   margin:15px;
