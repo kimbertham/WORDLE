@@ -21,11 +21,12 @@ const SoloMenu = () => {
   }
 
   return (
-    <div className='friendMenu'>
+    <div className='pastMenu'>
 
 
       {selected ? 
-        <div className='showGame'>
+        <div className='showPast'>
+          <h1>{selected.word}</h1>
           <div className='small'>
             <Word arr={[]} guess={selected.guesses} word={selected.word.split('')}/>
           </div>
@@ -34,7 +35,7 @@ const SoloMenu = () => {
         :
 
         games.map(g => 
-          <div key={g._id} className='pastGames' onClick={() => setSelected(g)}>
+          <div key={g._id} className='pastGame' onClick={() => setSelected(g)}>
             <div className='small'>
               <Word arr={[]} guess={g.guesses} word={g.word.split('')}/>
             </div>

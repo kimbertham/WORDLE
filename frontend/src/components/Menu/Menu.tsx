@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { headers } from '../../lib'
+import { headers,cap } from '../../lib'
 import axios from 'axios'
 import Search from './Search'
 import { IFriend } from '../../types'
@@ -47,7 +47,7 @@ const Menu = () => {
           {showFriends && friends.length > 0 && 
             friends.map((f,i) => 
               <div className='sUser' key={i} onClick={() => locate(`friend/${f._id}`)}>
-                {f.users[0].username} 
+                <p>{cap(f.users[0].username)}</p>
               </div>)
           }
             

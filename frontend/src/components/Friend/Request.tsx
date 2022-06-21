@@ -24,28 +24,26 @@ const Request = ({ setCurrentRound, currentRound }:RequestProps) => {
 
   if (!currentRound) return null
   return (
-    <div className='bm'>
-      <div className='req'>
+    <div className='req'>
         
-        {currentRound.players[0].user?._id === userId() ?
-          <>
-            <h1> New Request</h1>
-            <div className='flex'> 
-              <button onClick={accept}>Accept</button>
-              <button onClick={decline}>Decline</button>
-            </div>
-          </>
-          :
-          <>
-            <h1> Request Sent! </h1>
-            <div className='word'>
-              {currentRound.players[0].word.split('').map((l:string,i :number) => 
-                <div key={i} className='letter'> {l} </div>)}
-            </div> 
-            <p> Waiting for response!</p>
-          </>
-        }
-      </div>
+      {currentRound.players[0].user?._id === userId() ?
+        <>
+          <h1> New Request</h1>
+          <div className='flex'> 
+            <button onClick={accept}>Accept</button>
+            <button onClick={decline}>Decline</button>
+          </div>
+        </>
+        :
+        <>
+          <h1> Request Sent! </h1>
+          <div className='word'>
+            {currentRound.players[0].word.split('').map((l:string,i :number) => 
+              <div key={i} className='letter row'> {l} </div>)}
+          </div> 
+          <p> Waiting for response!</p>
+        </>
+      }
     </div>
   )
 

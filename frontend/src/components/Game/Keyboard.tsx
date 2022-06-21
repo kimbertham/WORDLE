@@ -17,6 +17,11 @@ const Keyboard = ({ arr, setArr, onSubmit, guess, word, disabled } : KeyboardPro
   const [green, setGreen] = useState<string[]>([])
   const [err,setErr] = useState<string|null>()
 
+
+  useEffect(() => {
+    err && setErr(null)
+  },[arr])
+
   useEffect(() => {
     [...guess].pop()?.split('').forEach((letter,i) =>
       word[i] ===  letter && !green.includes(letter) &&  setGreen([...green, letter])), 
@@ -54,7 +59,7 @@ const Keyboard = ({ arr, setArr, onSubmit, guess, word, disabled } : KeyboardPro
   return (
     <div className='keyboard'>
 
-      {err && err}
+      {err && <p className='err'>{err}</p>}
       <div className='flex'>{[...rows].splice(0,10).map(l => key(l))}</div>
       <div className='flex'>{[...rows].splice(10,9).map(l => key(l))}</div>
 

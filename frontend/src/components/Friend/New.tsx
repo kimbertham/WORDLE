@@ -36,7 +36,7 @@ const NewGame = () => {
   }
 
   return (
-    <div className='bm'>
+    <div className='new'>
       <h1> New Game</h1>
 
       <div className='top'>

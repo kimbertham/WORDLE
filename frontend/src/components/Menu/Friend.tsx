@@ -31,20 +31,15 @@ const FriendMenu = ({ _id }: FriendMenuProps) => {
     <div className='pastMenu'>
 
       {selected && 
-        <>
-          <div className='close'>
-            <button className='button' onClick={() => setSelected(null)}> back</button>
-          </div>
-
-          <div className='showPastCont'>
-            {selected.players.map(p => 
-              <div className='showPast'>
-                <h1>{cap(p.user.username)}</h1>
-                <Word arr={[]} guess={p.guesses} word={p.word.split('')}/> 
-              </div>
-            )}
-          </div>
-        </> 
+        <div>
+          {selected.players.map(p => 
+            <div>
+              <h1>{cap(p.user.username)}</h1>
+              <Word arr={[]} guess={p.guesses} word={p.word.split('')}/> 
+            </div>
+          )}
+          <button className='button' onClick={() => setSelected(null)}> Back...</button>
+        </div>
       }
       
       {!selected && games.length > 0 && 
