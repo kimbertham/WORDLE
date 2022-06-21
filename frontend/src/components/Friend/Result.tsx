@@ -78,7 +78,7 @@ const friendResult = ({ currentRound ,setResult }:friendResultProps) => {
         </>}  
       
         {showOpp && 
-            <div className='resShow'>
+            <div className='resWord'>
               <h1>{p2.word}</h1>
               <Word arr={[]} guess={p2.guesses} word={p2.word.split('')}/> 
               <button className='button' onClick={() => setShowOpp(false)}>back</button>

@@ -54,7 +54,7 @@ const Main = ({ game, word, setResult }: MainProps) => {
   }
 
   return (
-    <div className='fh flex fcol'>
+    <div className='fgrow flex fcol'>
     
       <Word 
         arr={arr}

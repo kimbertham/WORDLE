@@ -6,7 +6,11 @@
 
 body {height: 100%;}
 #root{height: 100%;}
-.main {height: 93%;}
+
+.main {
+  @extend .flex, .fcol; 
+  height: 93%;
+}
 
 html{
   height: 100%;
@@ -30,6 +34,7 @@ input {
   font-weight: 100;
   font-style: italic;
   border: transparent;
+  outline: none;
 }
 
 .center{
@@ -48,6 +53,11 @@ input {
   font-style: italic;
   color: gray;
   cursor: pointer;
+}
+
+.err {
+  font-style: italic;
+  color: red;
 }
 
 .close {
@@ -166,10 +176,8 @@ input {
 //----menu ---------------------
 
 .menu {
-  @extend .mw;
+  @extend .mw, .fh;
   z-index: 1000;
-  height: 90vh;
-  top: 10vh;
   position: absolute;
   background-color: rgba(252, 252, 252, 0.95);
 }
@@ -195,35 +203,37 @@ input {
 
 
 
-.friendMenu { 
+.pastMenu { 
   @extend .menu;
-  padding: 20px 0;
+  overflow: scroll;
 
-  .pastGames { 
+  .pastGame { 
   @extend .flex;
   margin:  0 30px;
   padding: 15px 0;
   border-bottom: 2px solid rgb(222, 222, 222);
 
-  .small {
-    .letter {
-      width: 10px;
-      height: 10px;
-      font-size: 10px;
-      }
-    }
-
     .pastInfo{
       @extend .flex;
       flex-direction: column;
+      margin-left: 20px;
       h1 {
-      font-size: 20px;
+      font-size: 18px;
       }
     }
+    
+    .small {
+      .letter {
+        width: 10px;
+        height: 10px;
+        font-size: 10px;
+        }
+      }
   }
 
   .showPast { 
     @extend .center;
+    margin:20px 0;
     h1 {
       margin: 20px 0;
     }
@@ -293,15 +303,15 @@ input {
 }
 
 .res {
-  @extend .center, .fw;
+  @extend .center, .fw, .fh;
   background-color: rgba(39, 39, 39, 0.3);
   position: absolute;
-  height: 90vh;
-  top: 10vh;
+  top: 0;
 
   .rmid {
     padding: 20px;
     background-color: white;
+    max-width: 80%;
   }
 
   .resScores {
@@ -317,13 +327,10 @@ input {
     }
   }
 
-  .resShow {
+  .resWord {
     @extend .center;
-    text-align: center; 
-
-    .wordRow{
-      display: block;
-      margin: 20px 0;
+    h1,button {
+      margin: 10px 0;
     }
   }
 

@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Login = () => {
   const [data,setData] = useState({ username: '', password: '' })
   const [login, setLogin] = useState(true)
+  const [err, setErr] = useState<boolean>(false)
 
+
+  useEffect(() => {
+    err && setErr(false)
+  },[data])
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -14,6 +19,7 @@ const Login = () => {
       window.location.href = '/'
     } catch (err){
       console.log(err)
+      setErr(true)
     }
   }
 
@@ -24,6 +30,8 @@ const Login = () => {
       onLogin(e)
     } catch (err){
       console.log(err)
+      setErr(true)
+
     }
   }
 
@@ -37,14 +45,21 @@ const Login = () => {
         <input
           placeholder='Username'
           name='login'
-          autoComplete='false'
+          autoComplete='off'
+          autoCorrect='off'
+          autoCapitalize= 'off'
           onChange={(e) => setData({ ...data, username: e.target.value })}/>
- 
+
         <input
           placeholder='Password'
           name='password'
-          autoComplete='false'
+          type='password'
+          autoComplete='off'
+          autoCorrect='off'
+          autoCapitalize= 'off'
           onChange={(e) => setData({ ...data, password: e.target.value })}/>
+
+        {err && <small className='err'>Invalid! Try again...</small>}
 
         <button>{login ? 'Log in' : 'Register'}</button>
       </form>

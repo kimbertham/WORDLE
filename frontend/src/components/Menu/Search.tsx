@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { headers } from '../../lib'
+import { headers, cap } from '../../lib'
 import { IUser, IFriend } from '../../types'
 
 
@@ -42,7 +42,7 @@ const Search = ({ friends }: SearchProps) => {
         <div>
           {users.map((u,i) => 
             <div className='sUser' key={i}>
-              {u.username}
+              {cap(u.username)}
               {[...friends].map(f => f.users[0]).some(f => f.username === u.username) ?
                 <button onClick={() => window.location.replace(`/${locate(u)}`)}> ↪ </button> 
                 : <button onClick={() => newFriend(u)}> + </button> }
