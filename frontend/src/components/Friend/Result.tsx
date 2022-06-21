@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-// eslint-disable-next-line react-hooks/rules-of-hooks
+
 import React, { useState } from 'react'
 import { IGame } from '../../types'
 import { useHistory } from 'react-router-dom'
