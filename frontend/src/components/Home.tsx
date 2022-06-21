@@ -1,12 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { getRandom, headers, userId} from '../lib'
+import { getRandom, headers, getToken } from '../lib'
 import { IPlayer } from '../types'
 import Main from './Game/Main'
 import Result from './Game/Result'
 
-const user = userId()
+const token = getToken()
 
 const Home = () => {
   
@@ -19,12 +18,10 @@ const Home = () => {
   }, [])
 
   const getLastGame = async () => {
-    if (user) {
-      const res = (await axios.get('api/getLastSolo', headers)).data
-      if (res.length >= 0)  {
-        setWord(res[0].word)
-        setGame(res)
-      }
+    const res = token ? (await axios.get('api/getLastSolo', headers)).data : []
+    if (res.length > 0)  {
+      setWord(res[0].word)
+      setGame(res)
     } else {
       getWord()
       setGame([])
@@ -32,6 +29,7 @@ const Home = () => {
   }
 
   const getWord = async () => setWord(await getRandom())
+  
   if (!game || !word) return null
   return (
     <>

@@ -6,6 +6,10 @@ export const userId = () => {
   if (token) return JSON.parse(window.atob(token[1])).sub
 }
 
+export const getToken = () => {
+  return window.localStorage.getItem('token')
+}
+
 //---------- Words
 
 export const wordHeaders =  () => {
