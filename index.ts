@@ -14,8 +14,7 @@ const { json } = require('body-parser')
 const app = express()
 const PORT = process.env.PORT || 8000
 
-const server = http.createServer(app)
-const io = socketio(server, { cors: { origin: '*' } }) //for omit cors error
+
 
 
 mongoose.connect(
@@ -44,12 +43,15 @@ app.listen(PORT, () => {
   console.log('listening on port 8000')
 })
 
-io.on('connection', (socket: any) => {
 
+const server = http.createServer(app)
+const io = socketio(server, { cors: { origin: '*' } }) //for omit cors error
+
+io.on('connection', (socket: any) => {
   console.log('a user connected')
   socket.on('disconnect',() => console.log('User Disconnected'))
   socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
   socket.on('joinroom',(data : string) =>  socket.join(data))
 })
 
-server.listen(4000, () => console.log('socket server on 4000'))
+// server.listen(4000, () => console.log('socket server on 4000'))

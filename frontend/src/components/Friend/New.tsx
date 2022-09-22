@@ -8,8 +8,8 @@ import { headers, getRandom, userId } from '../../lib'
 import { IUser } from '../../types'
 import Keyboard from '../Game/Keyboard'
 
-const serverUrl = 'http://localhost:4000'
-const socket = io(serverUrl)
+// const serverUrl = 'http://localhost:4000'
+const socket = io()
 
 
 const NewGame = () => {
