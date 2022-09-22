@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { IPlayer, IGame } from '../../types'
+import { IPlayer } from '../../types'
 import { getToken, headers } from '../../lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 
+
 interface MainProps { 
   word: string[];
   game?:IPlayer;
-  round? : IGame;
   setResult:React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -34,7 +34,6 @@ const Main = ({ game, word, setResult }: MainProps) => {
   }
   
   const updateGame = async () => {
-
     if (arr.join('') === word.join('')) {
       completeGame()
     } else if ( arr !== word && guess.length === 6){

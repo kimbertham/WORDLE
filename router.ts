@@ -47,14 +47,11 @@ router.route('/completeGame/:id')
   
 //----------------
 
-router.route('/newFriendGame')
-  .post(secureRoute, friendControllers.newFriendGame)
+router.route('/newInput')
+  .post(secureRoute, friendControllers.newInputGame)
 
 router.route('/getFriendGames/:id')
   .post(secureRoute, friendControllers.getFriendGames)
-
-router.route('/acceptRequest/:id')
-  .post(secureRoute, friendControllers.acceptRequest)
 
 router.route('/declineRequest/:id')
   .get(secureRoute, friendControllers.declineRequest)
@@ -62,4 +59,6 @@ router.route('/declineRequest/:id')
 router.route('/totalScore/:id')
   .get(secureRoute, friendControllers.totalScore)
 
+
+//====
 

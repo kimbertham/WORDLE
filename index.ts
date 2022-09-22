@@ -3,7 +3,6 @@ import mongoose  from 'mongoose'
 import path from 'path'
 import { Request, Response } from 'express'
 import { router } from './router'
-import { newFriendGame } from './controllers/friendControllers'
 require('dotenv').config()
 
 const socketio = require('socket.io')
@@ -13,9 +12,6 @@ const { json } = require('body-parser')
 
 const app = express()
 const PORT = process.env.PORT || 8000
-
-
-
 
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.iagak.mongodb.net/wurdle?retryWrites=true&w=majority`
@@ -39,19 +35,25 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve('frontend','build','index.html'))
   })
 }
+
 // app.listen(PORT, () => {
 //   console.log('listening on port 8000')
 // })
 
 
 const server = http.createServer(app)
-const io = socketio(server, { cors: { origin: '*' } }) //for omit cors error
+const io = socketio(server, { cors: { origin: '*' } }) 
 
 io.on('connection', (socket: any) => {
   console.log('a user connected')
   socket.on('disconnect',() => console.log('User Disconnected'))
-  socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
   socket.on('joinroom',(data : string) =>  socket.join(data))
+
+  socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
+
+
+  socket.on('showScore', (id :string) => socket.to(id).emit('reUp', id))
+
 })
 
 server.listen(PORT, () => console.log('socket server on 4000'))

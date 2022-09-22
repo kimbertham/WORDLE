@@ -1,6 +1,7 @@
 import { Response } from 'express'
-import { friendModel, roundModel, gameModel } from '../models'
+import { friendModel, roundModel, gameModel, IGame } from '../models'
 import { ICustomReq } from '../auth/customReq'
+
 import mongoose from 'mongoose'
 
   
@@ -56,35 +57,36 @@ export const getFriendGames = async (req :ICustomReq, res:Response) => {
     console.log(err)
   } 
 }
-  
-export const newFriendGame = async (req :ICustomReq, res:Response) => {
-  try {
-    const game = (await gameModel.create(req.body))
-    const round = await roundModel.create({ players: [game], friendship: req.body.friendship })
-    res.status(201).json(round)
-  } catch (err) {
-    res.status(401).json(err)
-    console.log(err)
-  }
-}
 
-
-export const acceptRequest = async (req :ICustomReq, res:Response) => {
+export const newInputGame = async (req: ICustomReq, res:Response) => {
   try {
-    const player2 = await gameModel.create(req.body)
-    const game = await roundModel.findByIdAndUpdate(req.params.id,
-      { request: false,
-        $push: { players: player2 } },
-      { new: true })
-      .populate({ path: 'players',
-        populate: {
-          path: 'user',
-          model: 'User'
-        }  })
-      
-    res.status(201).json(game)
+
+    const lastGame = (await roundModel.find({ friendship: req.body.friendship })
+      .limit(1)
+      .sort({ $natural: -1 })) [0]
+
+    if (lastGame.players.length === 2) {
+
+      const game = (await gameModel.create(req.body))
+      const round = await roundModel.create({ players: [game], friendship: req.body.friendship })
+      console.log('complete')
+      res.status(201).json(round)
+
+    } else {
+      const player2 = await gameModel.create(req.body)
+      const game = await roundModel.findByIdAndUpdate(lastGame.id,
+        { request: false,  $push: { players: player2 } },
+        { new: true })
+        .populate({ path: 'players',
+          populate: {
+            path: 'user',
+            model: 'User'
+          } 
+        })
+      console.log('incomplete')
+      res.status(201).json(game)
+    }
   } catch (err) {
-    res.status(401).json(err)
     console.log(err)
   }
 }

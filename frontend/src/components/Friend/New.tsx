@@ -8,15 +8,14 @@ import { headers, getRandom, userId } from '../../lib'
 import { IUser } from '../../types'
 import Keyboard from '../Game/Keyboard'
 
-// const serverUrl = 'http://localhost:4000'
+// const socket = io('http://localhost:4000')
 const socket = io()
-
 
 const NewGame = () => {
   const [ arr, setArr] = useState<string[]>([])
   const [ opp, setOpp] = useState<string[]>([])
 
-  const { friend, game } = useParams<{ friend: string, game:string }>()
+  const { friend } = useParams<{ friend: string, game:string }>()
   const history = useHistory()
 
 
@@ -29,14 +28,9 @@ const NewGame = () => {
     const opponent = res.data.users.filter((u: IUser) => u._id !== userId())[0]
     setOpp(opponent)
   }
-  const newGame = async () => {
-    await axios.post('/api/newFriendGame/', { user: opp , word: arr.join(''), friendship: friend }, headers)
-    history.push(`/friend/${friend}`)
-    socket.emit('newGame', friend)
-  } 
-  
-  const acceptReq = async () => {
-    await axios.post(`/api/acceptRequest/${game}`, { user: opp, word: arr.join('') }, headers)
+
+  const newWord = async () => {
+    await axios.post('/api/newInput', { user: opp, word: arr.join(''), friendship: friend }, headers)
     history.push(`/friend/${friend}`)
     socket.emit('newGame', friend)
   }
@@ -61,7 +55,7 @@ const NewGame = () => {
         guess={[]}
         arr={arr}
         setArr={setArr}
-        onSubmit={game ? acceptReq : newGame}/>
+        onSubmit={newWord}/>
     </div>
   )
 }

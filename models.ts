@@ -12,7 +12,7 @@ interface IFriend {
   users: IUser[]
 }
 
-interface IGame {
+export interface IGame {
   user: IUser
   guesses: string[]
   score: number

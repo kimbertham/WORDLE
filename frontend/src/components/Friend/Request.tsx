@@ -19,7 +19,7 @@ const Request = ({ setCurrentRound, currentRound }:RequestProps) => {
   }
 
   const accept = () => {
-    history.push(`/new/${currentRound?.friendship}/${currentRound?._id}`)
+    history.push(`/new/${currentRound?.friendship}`)
   }
 
   if (!currentRound) return null
