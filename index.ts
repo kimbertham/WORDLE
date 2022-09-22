@@ -12,7 +12,7 @@ const  express = require('express')
 const { json } = require('body-parser')
 
 const app = express()
-const PORT = process.env.PORT || 8000 
+const PORT = process.env.PORT || 8000
 
 const server = http.createServer(app)
 const io = socketio(server, { cors: { origin: '*' } }) //for omit cors error
@@ -52,10 +52,4 @@ io.on('connection', (socket: any) => {
   socket.on('joinroom',(data : string) =>  socket.join(data))
 })
 
-
-server.listen(PORT , (error: any) => {
-  if (error) console.log(error)
-  console.log(`Server started on port ${PORT}`)
-})
-
-// server.listen(4000, () => console.log('socket server on 4000'))
+server.listen(4000, () => console.log('socket server on 4000'))
