@@ -2,9 +2,9 @@
   "python.pythonPath": "/Users/kimberleytham/.local/share/virtualenvs/banger-alert-django-ilxOqNKW/bin/python",
   "workbench.colorTheme": "Default Dark+",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#bb5671",
-    "titleBar.activeBackground":  "#bb5671",
-    "titleBar.inactiveBackground":   "#bb5671"
+    "statusBar.background": "#61abb3",
+    "titleBar.activeBackground":  "#61abb3",
+    "titleBar.inactiveBackground": "#61abb3"
   },
   "window.title": "Back-End",
   "typescript.tsdk": "node_modules/typescript/lib"

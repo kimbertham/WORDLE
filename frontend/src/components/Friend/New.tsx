@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import io from 'socket.io-client'
+
 
 import { useParams, useHistory } from 'react-router-dom'
 import { headers, getRandom, userId } from '../../lib'
 import { IUser } from '../../types'
-
 import Keyboard from '../Game/Keyboard'
+
+const serverUrl = 'http://localhost:4000'
+const socket = io(serverUrl)
 
 
 const NewGame = () => {
@@ -14,7 +18,7 @@ const NewGame = () => {
 
   const { friend, game } = useParams<{ friend: string, game:string }>()
   const history = useHistory()
- 
+
 
   useEffect(() => {
     getFriendship()
@@ -28,11 +32,13 @@ const NewGame = () => {
   const newGame = async () => {
     await axios.post('/api/newFriendGame/', { user: opp , word: arr.join(''), friendship: friend }, headers)
     history.push(`/friend/${friend}`)
+    socket.emit('newGame', friend)
   } 
   
   const acceptReq = async () => {
     await axios.post(`/api/acceptRequest/${game}`, { user: opp, word: arr.join('') }, headers)
     history.push(`/friend/${friend}`)
+    socket.emit('newGame', friend)
   }
 
   return (

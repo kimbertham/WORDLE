@@ -49,8 +49,7 @@ export const getFriendGames = async (req :ICustomReq, res:Response) => {
         } 
       }
     ])
-    
-    console.log(game)
+  
     res.status(201).json(game)
   } catch (err) {
     res.status(401).json( err)
@@ -60,8 +59,16 @@ export const getFriendGames = async (req :ICustomReq, res:Response) => {
   
 export const newFriendGame = async (req :ICustomReq, res:Response) => {
   try {
+
+    const last =   roundModel.find({ friendship: req.body.friendship }).sort({ _id: 1 }).limit(1)
+    console.log(last)
+  
+
     const game = (await gameModel.create(req.body))
     const round = await roundModel.create({ players: [game], friendship: req.body.friendship })
+
+
+
     res.status(201).json(round)
   } catch (err) {
     res.status(401).json(err)

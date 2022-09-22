@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
+import io from 'socket.io-client'
 import axios from 'axios'
 
 import { useHistory, useParams } from 'react-router-dom'
@@ -14,6 +15,7 @@ import Score from './Score'
 interface FriendProps { 
   setFriend: React.Dispatch<React.SetStateAction<string>>
 }
+
 const Friend = ({ setFriend }: FriendProps) => {
   const { id } = useParams<{ id: string }>()
   const history = useHistory()
@@ -21,6 +23,19 @@ const Friend = ({ setFriend }: FriendProps) => {
   const [request, setRequest] = useState<boolean>(true)
   const [result , setResult] = useState<boolean>(false)
   const [currentRound , setCurrentRound] = useState<IGame|null>()
+
+  useEffect(() => {
+    const serverUrl = 'http://localhost:4000'
+    const socket = io(serverUrl)
+    socket.emit('joinroom', id)
+    socket.on('reUp', () => {
+      getLastRound()
+    })
+
+    return () => {
+      socket.close()
+    }
+  },[])
 
   useEffect(() => {
     setFriend(id)
@@ -32,8 +47,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   }, [result])
 
   const getLastRound = async () => {
+    console.log('test')
     const res = (await axios.post(`/api/getFriendGames/${id}`, { skip: 0, limit: 1 },headers)).data[0]
-
     if (res) {
       setCurrentRound(res)
 
@@ -61,7 +76,6 @@ const Friend = ({ setFriend }: FriendProps) => {
 
   return (
     <>
-
       <Score currentRound={currentRound}/>
 
       {result &&

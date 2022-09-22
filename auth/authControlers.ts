@@ -28,7 +28,6 @@ export const login = async (req : Request,res:Response) => {
 
 export const register = async (req : Request,res:Response) => {
   try {
-    console.log(req.body)
     const user = await userModel.create(req.body)
     res.status(201).json(user)
   } catch (err) {

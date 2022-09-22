@@ -8,7 +8,6 @@ import { StrictMode } from 'react'
 const rootElement : any = document.getElementById('root')
 const root = createRoot(rootElement)
 
-console.log('root')
 root.render(
   <StrictMode>
     <App />

@@ -74,7 +74,6 @@ export const getSoloGames = async (req :ICustomReq, res:Response) => {
       .sort({ createdAt: -1 })
       .skip(req.body.num)
       .limit(5)
-    console.log(games)
     res.status(201).json(games)
   } catch (err) {
     res.status(401).json(err)
