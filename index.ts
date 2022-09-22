@@ -54,4 +54,4 @@ io.on('connection', (socket: any) => {
   socket.on('joinroom',(data : string) =>  socket.join(data))
 })
 
-// server.listen(4000, () => console.log('socket server on 4000'))
+server.listen(PORT, () => console.log('socket server on 4000'))
