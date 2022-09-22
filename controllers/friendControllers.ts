@@ -63,13 +63,12 @@ export const newInputGame = async (req: ICustomReq, res:Response) => {
 
     const lastGame = (await roundModel.find({ friendship: req.body.friendship })
       .limit(1)
-      .sort({ $natural: -1 })) [0]
+      .sort({ $natural: -1 }))[0]
 
-    if (lastGame.players.length === 2 || !lastGame.players) {
+    if (!lastGame || lastGame.players.length === 2 ) {
 
       const game = (await gameModel.create(req.body))
       const round = await roundModel.create({ players: [game], friendship: req.body.friendship })
-      console.log('complete')
       res.status(201).json(round)
 
     } else {
@@ -83,7 +82,6 @@ export const newInputGame = async (req: ICustomReq, res:Response) => {
             model: 'User'
           } 
         })
-      console.log('incomplete')
       res.status(201).json(game)
     }
   } catch (err) {

@@ -43,8 +43,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   },[])
 
   useEffect(() => {
-    const socket = io()
     // const socket = io('http://localhost:4000')
+    const socket = io()
     result && getLastRound()
     result && socket.emit('showScore', id)
     return () => {

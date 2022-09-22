@@ -23,7 +23,12 @@ const Score = ({ currentRound } :ScoreProps) => {
   return (
     <div className='score'> 
       <small>{cap(currentRound.players[0].user.username)}</small>
-      <p>{total[0] ? total[0].score : 0} : {total[1] ? total[1].score : 0} </p>
+
+      {total.length === 1 ? 
+        <p>{total[0].priority ? `${total[0].score} : 0` : `0 : ${total[0].score}` } </p> 
+        : <p>{total[0] ? total[0].score : 0} : {total[1] ? total[1].score : 0} </p>
+      }
+
       <small>{cap(currentRound.players[1].user.username)}</small>
     </div>
   )

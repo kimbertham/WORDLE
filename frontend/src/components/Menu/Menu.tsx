@@ -45,10 +45,12 @@ const Menu = () => {
           </div>
 
           {showFriends && friends.length > 0 && 
-            friends.map((f,i) => 
-              <div className='sUser' key={i} onClick={() => locate(`friend/${f._id}`)}>
+            friends.map((f,i) => {
+              console.log(f)
+              return <div className='sUser' key={i} onClick={() => locate(`friend/${f._id}`)}>
                 <p>{cap(f.users[0].username)}</p>
-              </div>)
+              </div>
+            })
           }
             
           {showFriends && friends.length === 0 && 

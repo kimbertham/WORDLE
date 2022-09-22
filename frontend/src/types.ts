@@ -30,4 +30,5 @@ completed: boolean
 export interface ITotal {
   _id: string
   score: number;
+  priority: boolean
 }
