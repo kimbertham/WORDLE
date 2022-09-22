@@ -39,9 +39,9 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve('frontend','build','index.html'))
   })
 }
-app.listen(PORT, () => {
-  console.log('listening on port 8000')
-})
+// app.listen(PORT, () => {
+//   console.log('listening on port 8000')
+// })
 
 
 const server = http.createServer(app)
