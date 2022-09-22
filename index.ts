@@ -12,7 +12,7 @@ const  express = require('express')
 const { json } = require('body-parser')
 
 const app = express()
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000 
 
 const server = http.createServer(app)
 const io = socketio(server, { cors: { origin: '*' } }) //for omit cors error
@@ -47,10 +47,15 @@ app.listen(PORT, () => {
 io.on('connection', (socket: any) => {
 
   console.log('a user connected')
-
   socket.on('disconnect',() => console.log('User Disconnected'))
   socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
   socket.on('joinroom',(data : string) =>  socket.join(data))
 })
 
-server.listen(4000, () => console.log('socket server on 4000'))
+
+server.listen(PORT , (error: any) => {
+  if (error) console.log(error)
+  console.log(`Server started on port ${PORT}`)
+})
+
+// server.listen(4000, () => console.log('socket server on 4000'))
