@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import { friendModel, roundModel, gameModel, IGame } from '../models'
+import { friendModel, roundModel, gameModel } from '../models'
 import { ICustomReq } from '../auth/customReq'
 
 import mongoose from 'mongoose'
@@ -65,7 +65,7 @@ export const newInputGame = async (req: ICustomReq, res:Response) => {
       .limit(1)
       .sort({ $natural: -1 })) [0]
 
-    if (lastGame.players.length === 2) {
+    if (lastGame.players.length === 2 || !lastGame.players) {
 
       const game = (await gameModel.create(req.body))
       const round = await roundModel.create({ players: [game], friendship: req.body.friendship })

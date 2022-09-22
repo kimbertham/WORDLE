@@ -50,8 +50,6 @@ io.on('connection', (socket: any) => {
   socket.on('joinroom',(data : string) =>  socket.join(data))
 
   socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
-
-
   socket.on('showScore', (id :string) => socket.to(id).emit('reUp', id))
 
 })
