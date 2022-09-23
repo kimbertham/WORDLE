@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useState, useEffect } from 'react'
-import { checkWord } from '../../lib/lib'
 
 const rows = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('')
 
 interface KeyboardProps {
   word: string[]
   guess: string[]
-  onSubmit:any
+  check: () => void
   arr: string[],
   setArr: React.Dispatch<React.SetStateAction<string[]>>;
   disabled?:boolean 
 }
 
-const Keyboard = ({ arr, setArr, onSubmit, guess, word, disabled } : KeyboardProps) => {
+const Keyboard = ({ arr, setArr, check, guess, word, disabled } : KeyboardProps) => {
   const [green, setGreen] = useState<string[]>([])
   const [err,setErr] = useState<string|null>()
 
@@ -28,20 +27,9 @@ const Keyboard = ({ arr, setArr, onSubmit, guess, word, disabled } : KeyboardPro
     [guess]
   })
 
-  const delType = () => setArr(arr.slice(0,-1))
+  const delType = () => arr.length !== 0 && setArr(arr.slice(0,-1))
 
   const setLetter = (l:string) => arr.length < 6 && setArr([...arr, l])
-  
-  const check = async () => {
-    if (arr.length <= 4) {
-      setErr('Word too short!')
-    } else  if (!(await checkWord([...arr].join('')))) {
-      setErr('Not a word')
-    } else {
-      setErr(null)
-      onSubmit()
-    }
-  }
 
   const key = (l:string) => (
     <div id={l} key={l} onClick={() => disabled ? null : setLetter(l)} 

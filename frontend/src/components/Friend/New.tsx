@@ -55,7 +55,7 @@ const NewGame = () => {
         guess={[]}
         arr={arr}
         setArr={setArr}
-        onSubmit={newWord}/>
+        check={newWord}/>
     </div>
   )
 }

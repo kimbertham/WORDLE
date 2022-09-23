@@ -29,6 +29,7 @@ html{
 .mw { width: 100vw}
 .fw {width: 100%}
 .fh {height: 100%}
+.mh {height: 100vh;}
 
 
 
@@ -59,9 +60,22 @@ input {
 }
 
 .err {
+  @extend .center;
+  position: absolute;
   font-style: italic;
-  color: red;
+  color: white;
   margin: 10px 0;
+  padding: 15px;
+  background-color: rgb(49, 49, 49, 0.8);
+  border-radius:5px;
+  animation: 0.2s shake alternate;
+  animation-iteration-count: infinite;
+
+  @keyframes shake {
+    0% { transform: translateX(0) }
+    50% { transform: translateX(-2px) }
+    100% { transform: translateX(0) }
+  }
 }
 
 .close {

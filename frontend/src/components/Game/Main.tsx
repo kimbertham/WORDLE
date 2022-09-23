@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IPlayer } from '../../types'
 import { getToken, headers } from '../../lib/lib'
+import { checkWord } from '../../lib/lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 
@@ -17,13 +18,23 @@ const Main = ({ game, word, setResult }: MainProps) => {
   const [player,setPlayer] = useState<IPlayer | null>(game ? game : null)
   const [guess, setGuess] = useState<string[]>( game?.guesses || [])
   const [disabled,setDisabled] = useState<boolean>(game?.completed ? true : false)
+  const [err,setErr] = useState<string|null>()
   const token = getToken()
-
 
   useEffect(() => {
     arr.length > 0 && updateGame()
     setArr([])
   },[guess])
+
+  useEffect(() => {
+    const timer = setTimeout(() =>  setErr(null), 800)
+    return () => clearTimeout(timer)
+  }, [err])
+
+
+  const addGuess = () => {
+    setGuess([...guess,arr.join('')])
+  }
 
   const newGame = async () => {
     if (token) {
@@ -48,14 +59,21 @@ const Main = ({ game, word, setResult }: MainProps) => {
     setResult(true)
   }
 
-  const addGuess = () => {
-    setGuess([...guess,arr.join('')])
+  const check = async () => {
+    if (arr.length <= 4) {
+      setErr('Word too short!')
+    } else  if (!(await checkWord([...arr].join('')))) {
+      setErr('Not in word list')
+    } else {
+      player ? addGuess() : newGame()
+    }
   }
 
   return (
     <div className='fgrow flex fcol'>
-    
+
       <Word 
+        err={err}
         arr={arr}
         word={word}
         guess={guess}/>
@@ -65,8 +83,8 @@ const Main = ({ game, word, setResult }: MainProps) => {
         word={word}
         guess={guess}
         setArr={setArr}
-        disabled={disabled}
-        onSubmit={player  ? addGuess : newGame }/>
+        check={check}
+        disabled={disabled}/>
 
     </div>
 

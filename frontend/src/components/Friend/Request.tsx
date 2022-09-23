@@ -1,21 +1,23 @@
 import React from 'react'
 import axios from 'axios'
+import io from 'socket.io-client'
 import { useHistory } from 'react-router-dom'
 import { IGame } from '../../types'
 import { headers, userId } from '../../lib/lib'
 
 interface RequestProps {
-  setCurrentRound:  React.Dispatch<IGame>
   currentRound: IGame | undefined
   setRequest: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Request = ({ setCurrentRound, currentRound }:RequestProps) => {
+const Request = ({ currentRound }:RequestProps) => {
   const history = useHistory()
 
   const decline = async () => {
-    const res = await axios.get(`api/declineRequest/${currentRound?._id}`, headers)
-    setCurrentRound(res.data)
+    await axios.get(`api/declineRequest/${currentRound?._id}`, headers)
+    const socket = io('http://localhost:4000')
+    // const socket = io()
+    socket.emit('fetch', currentRound?._id)
   }
 
   const accept = () => {

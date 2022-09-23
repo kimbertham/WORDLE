@@ -1,11 +1,13 @@
 import React from 'react'
 
+
 interface WordProps { 
+  err?: string | null | undefined
   word:string[]
   arr: string[]
   guess:string[]
 }
-const Word = ({ word, arr, guess } :WordProps) => {
+const Word = ({ word, arr, guess, err } :WordProps) => {
 
   const currentGuess = (i:number, e:number) => 
     <div  
@@ -22,6 +24,8 @@ const Word = ({ word, arr, guess } :WordProps) => {
 
   return (
     <div className='center fgrow'>
+
+      {err && <p className='err'>{err}</p>}
 
       {[...Array(6)].map((e,i) => 
         <div className='flex' key={i}>

@@ -30,7 +30,6 @@ const Friend = ({ setFriend }: FriendProps) => {
     getLastRound()
   },[])
 
-
   useEffect(() => {
     const socket = io('http://localhost:4000')
     // const socket = io()
@@ -40,7 +39,6 @@ const Friend = ({ setFriend }: FriendProps) => {
     return () => {
       socket.close()
     } 
-
   },[])
 
   useEffect(() => {
@@ -51,7 +49,6 @@ const Friend = ({ setFriend }: FriendProps) => {
     return () => {
       socket.close()
     } 
-
   }, [result])
 
   const getLastRound = async () => {
@@ -77,8 +74,7 @@ const Friend = ({ setFriend }: FriendProps) => {
   if (currentRound.request && request) return  (
     <Request
       setRequest={setRequest}
-      currentRound={currentRound}
-      setCurrentRound={setCurrentRound}/>
+      currentRound={currentRound}/>
   )
 
   return (

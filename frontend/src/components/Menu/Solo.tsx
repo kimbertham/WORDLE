@@ -23,30 +23,33 @@ const SoloMenu = () => {
   return (
     <div className='pastMenu'>
 
-
-      {selected ? 
-        <div className='showPast'>
-          <h1>{selected.word}</h1>
-          <div className='small'>
-            <Word arr={[]} guess={selected.guesses} word={selected.word.split('')}/>
-          </div>
-          <button className='button' onClick={() => setSelected(null)}>Back...</button>
-        </div>
-        :
-
-        games.map(g => 
-          <div key={g._id} className='pastGame' onClick={() => setSelected(g)}>
-            <div className='small'>
-              <Word arr={[]} guess={g.guesses} word={g.word.split('')}/>
-            </div>
-            <div className='pastInfo'>
-              <h1>{g.word}</h1>
-              <p>Guesses: {g.guesses.length}/6</p>
+      <div>
+        {selected ? 
+          <div className='mh mw center'>
+            <div className='showPast'>
+              <h1>{selected.word}</h1>
+              <div className='small'>
+                <Word arr={[]} guess={selected.guesses} word={selected.word.split('')}/>
+              </div>
+              <button className='button' onClick={() => setSelected(null)}>Back...</button>
             </div>
           </div>
-        )}
+          :
+
+          games.map(g => 
+            <div key={g._id} className='pastGame' onClick={() => setSelected(g)}>
+              <div className='small'>
+                <Word arr={[]} guess={g.guesses} word={g.word.split('')}/>
+              </div>
+              <div className='pastInfo'>
+                <h1>{g.word}</h1>
+                <p>Guesses: {g.guesses.length}/6</p>
+              </div>
+            </div>
+          )}
       
     
+      </div>
     </div>
   )
 }
