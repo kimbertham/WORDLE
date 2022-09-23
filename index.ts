@@ -39,9 +39,9 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(PORT, () => {
-  console.log('listening on port 8000')
-})
+// app.listen(PORT, () => {
+//   console.log('listening on port 8000')
+// })
 
 
 const server = http.createServer(app)
@@ -51,10 +51,7 @@ io.on('connection', (socket: any) => {
   console.log('a user connected')
   socket.on('disconnect',() => console.log('User Disconnected'))
   socket.on('joinroom',(data : string) =>  socket.join(data))
-
   socket.on('fetch', (id :string) => socket.to(id).emit('fetch', id))
-  // socket.on('showScore', (id :string) => socket.to(id).emit('fetch', id))
-
 })
 
-server.listen(4000, () => console.log('socket server on 4000'))
+server.listen(PORT, () => console.log('socket server on 4000'))

@@ -97,6 +97,9 @@ input {
   border: 2px solid #d4d6da;
   font-size: 30px;
   font-weight: bold;
+  .dark {
+    background-color: gray
+  }
 }
 
 .keyboard {

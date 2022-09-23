@@ -31,8 +31,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   },[])
 
   useEffect(() => {
-    const socket = io('http://localhost:4000')
-    // const socket = io()
+    // const socket = io('http://localhost:4000')
+    const socket = io()
     socket.emit('joinroom', id)
     socket.on('fetch', () =>  getLastRound())
 
@@ -42,8 +42,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   },[])
 
   useEffect(() => {
-    const socket = io('http://localhost:4000')
-    // const socket = io()
+    // const socket = io('http://localhost:4000')
+    const socket = io()
     result && socket.emit('fetch', id)
 
     return () => {

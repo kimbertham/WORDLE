@@ -6,7 +6,6 @@ import { checkWord } from '../../lib/lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 
-
 interface MainProps { 
   word: string[];
   game?:IPlayer;
@@ -19,6 +18,7 @@ const Main = ({ game, word, setResult }: MainProps) => {
   const [guess, setGuess] = useState<string[]>( game?.guesses || [])
   const [disabled,setDisabled] = useState<boolean>(game?.completed ? true : false)
   const [err,setErr] = useState<string|null>()
+  const [flip, setFlip] = useState<boolean>(false)
   const token = getToken()
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Main = ({ game, word, setResult }: MainProps) => {
     const timer = setTimeout(() =>  setErr(null), 800)
     return () => clearTimeout(timer)
   }, [err])
-
+  
 
   const addGuess = () => {
     setGuess([...guess,arr.join('')])
@@ -72,7 +72,10 @@ const Main = ({ game, word, setResult }: MainProps) => {
   return (
     <div className='fgrow flex fcol'>
 
+      {/* <button onClick={() =>setFlip(!flip)}>flip</button> */}
+
       <Word 
+        flip={flip}
         err={err}
         arr={arr}
         word={word}

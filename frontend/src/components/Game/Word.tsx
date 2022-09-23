@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactCardFlip from 'react-card-flip'
 
 
 interface WordProps { 
@@ -6,14 +7,21 @@ interface WordProps {
   word:string[]
   arr: string[]
   guess:string[]
+  flip?:boolean
 }
-const Word = ({ word, arr, guess, err } :WordProps) => {
+const Word = ({ word, arr, guess, err, flip } :WordProps) => {
 
   const currentGuess = (i:number, e:number) => 
+  // <ReactCardFlip isFlipped={flip} flipDirection="vertical">
     <div  
       key={e} className={`letter ${word === arr  && 'green'}`}>
       <p>{arr[e]}</p>
     </div>
+  {/* <div 
+        key={e} className={`letter grey ${word === arr  && 'green'}`}>
+        <p>{arr[e]}</p>
+      </div>
+    </ReactCardFlip> */}
   
   const pastGuess = (i:number, e:number) =>
     <div 
@@ -21,6 +29,8 @@ const Word = ({ word, arr, guess, err } :WordProps) => {
         : word.includes(guess[i].split('')[e]) ? 'yellow' : 'grey' }`}>
       <p>{guess[i].split('')[e]} </p> 
     </div>
+
+
 
   return (
     <div className='center fgrow'>

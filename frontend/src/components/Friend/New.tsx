@@ -8,8 +8,8 @@ import { headers, getRandom, userId } from '../../lib/lib'
 import { IUser } from '../../types'
 import Keyboard from '../Game/Keyboard'
 
-const socket = io('http://localhost:4000')
-// const socket = io()
+// const socket = io('http://localhost:4000')
+const socket = io()
 
 const NewGame = () => {
   const [ arr, setArr] = useState<string[]>([])
