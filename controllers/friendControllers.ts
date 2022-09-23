@@ -1,10 +1,8 @@
 import { Response } from 'express'
 import { friendModel, roundModel, gameModel } from '../models'
 import { ICustomReq } from '../auth/customReq'
-
 import mongoose from 'mongoose'
 
-  
 export const getFriendGames = async (req :ICustomReq, res:Response) => {
   try {
 
@@ -70,7 +68,6 @@ export const newInputGame = async (req: ICustomReq, res:Response) => {
       const game = (await gameModel.create(req.body))
       const round = await roundModel.create({ players: [game], friendship: req.body.friendship })
       res.status(201).json(round)
-
     } else {
       const player2 = await gameModel.create(req.body)
       const game = await roundModel.findByIdAndUpdate(lastGame.id,

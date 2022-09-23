@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import { getFriendGames ,newInputGame } from './controllers/friendControllers'
 import mongoose  from 'mongoose'
 import path from 'path'
 import { Request, Response } from 'express'
 import { router } from './router'
+import { ICustomReq } from './auth/customReq'
+
 require('dotenv').config()
 
 const socketio = require('socket.io')
@@ -49,8 +52,8 @@ io.on('connection', (socket: any) => {
   socket.on('disconnect',() => console.log('User Disconnected'))
   socket.on('joinroom',(data : string) =>  socket.join(data))
 
-  socket.on('newGame', (id :string) => socket.to(id).emit('reUp', id))
-  socket.on('showScore', (id :string) => socket.to(id).emit('reUp', id))
+  socket.on('fetch', (id :string) => socket.to(id).emit('fetch', id))
+  // socket.on('showScore', (id :string) => socket.to(id).emit('fetch', id))
 
 })
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { IGame } from '../../types'
 import { useHistory } from 'react-router-dom'
-import { cap } from '../../lib'
+import { cap } from '../../lib/lib'
 import Score from './Score'
 import Word from '../Game/Word'
 

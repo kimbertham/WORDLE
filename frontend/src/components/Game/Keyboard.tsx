@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useState, useEffect } from 'react'
-import { checkWord } from '../../lib'
+import { checkWord } from '../../lib/lib'
 
 const rows = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('')
 

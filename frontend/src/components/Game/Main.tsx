@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IPlayer } from '../../types'
-import { getToken, headers } from '../../lib'
+import { getToken, headers } from '../../lib/lib'
 import Word from './Word'
 import Keyboard from './Keyboard'
 

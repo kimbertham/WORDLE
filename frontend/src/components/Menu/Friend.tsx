@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' 
 import axios from 'axios'
-import { headers, cap } from '../../lib'
+import { headers, cap } from '../../lib/lib'
 import { IGame } from '../../types'
 import Word from '../Game/Word'
 
@@ -20,7 +20,7 @@ const FriendMenu = ({ _id }: FriendMenuProps) => {
 
   const getGames = async () => {
     const res = (await axios.post(`/api/getFriendGames/${_id}`, { skip: index, limit: 5 }, headers)).data
-    if (res.length < 5 ) setHide(true)
+    if (res.length <= 5 ) setHide(true)
     setGames( games.length  === 0 ? res : [...games, ...res]) 
     setIndex(index + 5)
   }
@@ -30,16 +30,14 @@ const FriendMenu = ({ _id }: FriendMenuProps) => {
 
     <>
       {selected && 
-
         <div className='pastGames'>
-          <button className='button' onClick={() => setSelected(null)}> X</button>
+          <div className='exit' onClick={() => setSelected(null)}> &lt;</div>
           {selected.players.map((p,i) => 
             <div className='pastFriendGame'>
               <h1>{cap(p.user.username)}</h1>
               <Word arr={[]} guess={p.guesses} key={i} word={p.word.split('')}/> 
             </div>
           )}
-
         </div>
       }
 
@@ -56,8 +54,10 @@ const FriendMenu = ({ _id }: FriendMenuProps) => {
                 <h1>{cap(g.players[1].word)}</h1>
                 <p>Guesses: {g.players[0].guesses.length}/6</p>
                 <p>Score: {g.players[0].guesses.length}:{g.players[1].guesses.length }</p>
-                <p>Winner: {g.players[0].guesses.length > g.players[1].guesses.length ? 
-                  g.players[1].user.username : g.players[0].user.username}</p>
+                <p>Winner: {   
+                  g.players[0].guesses.length === g.players[1].guesses.length ? 'TIE' 
+                    : g.players[0].guesses.length > g.players[1].guesses.length ? 
+                      g.players[1].user.username : g.players[0].user.username}</p>
               </div>
             </div>
           )}

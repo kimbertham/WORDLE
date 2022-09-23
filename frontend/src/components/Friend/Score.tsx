@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { headers, cap } from '../../lib'
+import { headers, cap } from '../../lib/lib'
 import { IGame , ITotal } from '../../types'
 
 

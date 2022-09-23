@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { getDef } from '../../lib'
+import { getDef } from '../../lib/lib'
 
 interface ResultProps {
 word: string;

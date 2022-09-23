@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { IPlayer } from '../../types'
-import { userId, headers } from '../../lib'
+import { userId, headers } from '../../lib/lib'
 import Word from '../Game/Word'
 
 const SoloMenu = () => {

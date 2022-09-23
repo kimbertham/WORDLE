@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 
 
 import { useParams, useHistory } from 'react-router-dom'
-import { headers, getRandom, userId } from '../../lib'
+import { headers, getRandom, userId } from '../../lib/lib'
 import { IUser } from '../../types'
 import Keyboard from '../Game/Keyboard'
 
@@ -30,10 +30,9 @@ const NewGame = () => {
   }
 
   const newWord = async () => {
-    const newT = await axios.post('/api/newInput', { user: opp, word: arr.join(''), friendship: friend }, headers)
-    console.log(newT)
+    await axios.post('/api/newInput', { user: opp, word: arr.join(''), friendship: friend }, headers)
     history.push(`/friend/${friend}`)
-    socket.emit('newGame', friend)
+    socket.emit('fetch', friend)
   }
 
   return (

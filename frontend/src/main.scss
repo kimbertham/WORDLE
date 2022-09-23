@@ -81,7 +81,7 @@ input {
   height: 55px;
   margin: 3px;
   border: 2px solid #d4d6da;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -256,20 +256,20 @@ input {
 //----colours ----------------
 
 .grey {
-  background-color: grey !important;;
-  border: 2px solid grey;
+  background-color: rgb(120,124,126) !important;;
+  border: 2px solid rgb(120,124,126);
   color: white;
 }
 
 .green {
-  background-color: #6dad64 !important;
-  border: 2px solid #6dad64;
+  background-color: rgb(106,169,100) !important;
+  border: 2px solid rgb(106,169,100);
   color: white;
 }
 
 .yellow {
-  background-color: #c9b659 !important;
-  border: 2px solid #c9b659;
+  background-color: rgb(201,180,88) !important;
+  border: 2px solid rgb(201,180,88);
   color: white;
 }
 
@@ -304,6 +304,10 @@ input {
   top: 0;
 
   .rmid {
+    -webkit-box-shadow: 0px 0px 33px 1px rgba(148,148,148,1);
+    -moz-box-shadow: 0px 0px 33px 1px rgba(148,148,148,1);
+    box-shadow: 0px 0px 33px 1px rgba(148,148,148,1);
+    border-radius: 9px;
     padding: 20px;
     background-color: white;
     max-width: 80%;
@@ -312,7 +316,7 @@ input {
   .resScores {
     border: 2px solid rgb(245, 245, 245);
     background-color:  rgb(245, 245, 245);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 15px;
     margin: 15px 0;
 
@@ -376,14 +380,9 @@ input {
 }
 
 .pastGames {
-  padding:3% 0;
-  overflow-y: scroll;
-  height: 90%;
-  // text-align: center;
-  
-
   h1{
     margin: 10px;
+    text-align: center;
   }
 
   .pastFriendGame {
@@ -393,6 +392,12 @@ input {
   .letter{
     width: 40px;
     height: 40px;
+  }
+
+  .exit {
+    padding: 10px 30px;
+    position: absolute;
+    font-size: 20px;
   }
 }
 

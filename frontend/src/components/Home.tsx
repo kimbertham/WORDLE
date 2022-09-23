@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { getRandom, headers, getToken } from '../lib'
+import { getRandom, headers, getToken } from '../lib/lib'
 import { IPlayer } from '../types'
 import Main from './Game/Main'
 import Result from './Game/Result'

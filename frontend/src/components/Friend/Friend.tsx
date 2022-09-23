@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react'
-import io, { Socket } from 'socket.io-client'
+import io from 'socket.io-client'
 import axios from 'axios'
 
 import { useHistory, useParams } from 'react-router-dom'
-import { headers } from '../../lib'
+import { headers } from '../../lib/lib'
 import { IGame } from '../../types'
 
 import Request from './Request'
@@ -24,31 +24,34 @@ const Friend = ({ setFriend }: FriendProps) => {
   const [result , setResult] = useState<boolean>(false)
   const [currentRound , setCurrentRound] = useState<IGame|null>()
 
-  useEffect(() => {
-    const socket = io('http://localhost:4000')
-    // const socket = io()
-    socket.emit('joinroom', id)
-    socket.on('reUp', () => {
-      getLastRound()
-    })
-
-    return () => {
-      socket.close() 
-    }
-  },[])
 
   useEffect(() => {
     setFriend(id)
     getLastRound()
   },[])
 
+
   useEffect(() => {
     const socket = io('http://localhost:4000')
     // const socket = io()
-    result && socket.emit('showScore', id)
+    socket.emit('joinroom', id)
+    socket.on('fetch', () =>  getLastRound())
+
     return () => {
-      socket.close() 
-    }
+      socket.close()
+    } 
+
+  },[])
+
+  useEffect(() => {
+    const socket = io('http://localhost:4000')
+    // const socket = io()
+    result && socket.emit('fetch', id)
+
+    return () => {
+      socket.close()
+    } 
+
   }, [result])
 
   const getLastRound = async () => {

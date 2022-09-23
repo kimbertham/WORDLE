@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { IGame } from '../../types'
-import { headers, userId } from '../../lib'
+import { headers, userId } from '../../lib/lib'
 
 interface RequestProps {
   setCurrentRound:  React.Dispatch<IGame>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { headers, cap } from '../../lib'
+import { headers, cap } from '../../lib/lib'
 import { IUser, IFriend } from '../../types'
 
 
