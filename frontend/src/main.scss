@@ -167,7 +167,8 @@ input {
 //----menu ---------------------
 
 .menu {
-  @extend .mw, .fh;
+  @extend .mw;
+  min-height: 100%;
   z-index: 1000;
   position: absolute;
   background-color: rgba(252, 252, 252, 0.95);
@@ -374,5 +375,25 @@ input {
   }
 }
 
+.pastGames {
+  padding:3% 0;
+  overflow-y: scroll;
+  height: 90%;
+  // text-align: center;
+  
+
+  h1{
+    margin: 10px;
+  }
+
+  .pastFriendGame {
+    margin: 30px;
+  }
+
+  .letter{
+    width: 40px;
+    height: 40px;
+  }
+}
 
 

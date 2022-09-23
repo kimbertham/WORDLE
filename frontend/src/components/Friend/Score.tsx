@@ -9,7 +9,7 @@ interface ScoreProps {
 }
 const Score = ({ currentRound } :ScoreProps) => {
   const [total, setTotal] = useState<ITotal[]>()
-
+  
   useEffect(() => {
     getTotal()
   }, [currentRound])

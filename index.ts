@@ -36,9 +36,9 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-// app.listen(PORT, () => {
-//   console.log('listening on port 8000')
-// })
+app.listen(PORT, () => {
+  console.log('listening on port 8000')
+})
 
 
 const server = http.createServer(app)
@@ -54,4 +54,4 @@ io.on('connection', (socket: any) => {
 
 })
 
-server.listen(PORT, () => console.log('socket server on 4000'))
+server.listen(4000, () => console.log('socket server on 4000'))

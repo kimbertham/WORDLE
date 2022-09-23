@@ -26,47 +26,51 @@ const FriendMenu = ({ _id }: FriendMenuProps) => {
   }
 
   if (!games) return <p>No games yet...</p>
-
   return (
-    <div className='pastMenu'>
 
+    <>
       {selected && 
-        <div>
-          {selected.players.map(p => 
-            <div>
+
+        <div className='pastGames'>
+          <button className='button' onClick={() => setSelected(null)}> X</button>
+          {selected.players.map((p,i) => 
+            <div className='pastFriendGame'>
               <h1>{cap(p.user.username)}</h1>
-              <Word arr={[]} guess={p.guesses} word={p.word.split('')}/> 
+              <Word arr={[]} guess={p.guesses} key={i} word={p.word.split('')}/> 
             </div>
           )}
-          <button className='button' onClick={() => setSelected(null)}> Back...</button>
+
         </div>
       }
-      
-      {!selected && games.length > 0 && 
-      <>
-        {games.map(g => 
-          <div key={g._id} className='pastGame' onClick={() => setSelected(g)}>
-            <div className='small'>
-              <Word arr={[]} guess={g.players[0].guesses} word={g.players[1].word.split('')}/>
+
+    
+
+      <div className='pastMenu'>
+        <>
+          {games.filter(g => !g.players.map(p => p.completed).includes(false)).map(g => 
+            <div key={g._id} className='pastGame' onClick={() => setSelected(g)}>
+              <div className='small'>
+                <Word arr={[]} guess={g.players[0].guesses} word={g.players[1].word.split('')}/>
+              </div>
+              <div className='pastInfo'>
+                <h1>{cap(g.players[1].word)}</h1>
+                <p>Guesses: {g.players[0].guesses.length}/6</p>
+                <p>Score: {g.players[0].guesses.length}:{g.players[1].guesses.length }</p>
+                <p>Winner: {g.players[0].guesses.length > g.players[1].guesses.length ? 
+                  g.players[1].user.username : g.players[0].user.username}</p>
+              </div>
             </div>
-            <div className='pastInfo'>
-              <h1>{cap(g.players[1].word)}</h1>
-              <p>Guesses: {g.players[0].guesses.length}/6</p>
-              <p>Score: {g.players[0].guesses.length}:{g.players[1].guesses.length }</p>
-              <p>Winner: {g.players[0].guesses.length > g.players[1].guesses.length ? 
-                g.players[1].user.username : g.players[0].user.username}</p>
-            </div>
+          )}
+
+          <div className='hide'>
+            {!hide ? <button onClick={getGames} className='button'>Load More...</button>
+              : <small>No more games ....</small>}
           </div>
-        )}
+        </>
+      
 
-        <div className='hide'>
-          {!hide ? <button onClick={getGames} className='button'>Load More...</button>
-            : <small>No more games ....</small>}
-        </div>
-      </>
-      }
-
-    </div>
+      </div>
+    </>
   )
 }
 export default FriendMenu

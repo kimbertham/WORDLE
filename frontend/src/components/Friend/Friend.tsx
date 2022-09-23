@@ -25,8 +25,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   const [currentRound , setCurrentRound] = useState<IGame|null>()
 
   useEffect(() => {
-    // const socket = io('http://localhost:4000')
-    const socket = io()
+    const socket = io('http://localhost:4000')
+    // const socket = io()
     socket.emit('joinroom', id)
     socket.on('reUp', () => {
       getLastRound()
@@ -43,9 +43,8 @@ const Friend = ({ setFriend }: FriendProps) => {
   },[])
 
   useEffect(() => {
-    // const socket = io('http://localhost:4000')
-    const socket = io()
-    result && getLastRound()
+    const socket = io('http://localhost:4000')
+    // const socket = io()
     result && socket.emit('showScore', id)
     return () => {
       socket.close() 
