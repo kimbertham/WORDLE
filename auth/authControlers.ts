@@ -28,6 +28,7 @@ export const login = async (req : Request,res:Response) => {
 
 export const register = async (req : Request,res:Response) => {
   try {
+    console.log('called')
     const user = await userModel.create(req.body)
     res.status(201).json(user)
   } catch (err) {
@@ -38,7 +39,6 @@ export const register = async (req : Request,res:Response) => {
 
 export const findUsers = async (req : ICustomReq,res:Response) => {
   try {
-  
     const users = req.body.username !== '' ? 
       await userModel.find({ '$and':
         [ { '_id': { '$ne': req.currentUser._id } },

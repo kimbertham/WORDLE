@@ -4,7 +4,6 @@ import { ICustomReq } from '../auth/customReq'
 
 export const getLastSolo = async (req :ICustomReq, res:Response) => {
   try {
-
     const game = await gameModel.aggregate([
       { $match: { user: req.currentUser._id } },
       { $sort: { createdAt: -1 } },

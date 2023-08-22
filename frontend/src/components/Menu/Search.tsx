@@ -40,7 +40,7 @@ const Search = ({ friends }: SearchProps) => {
 
       {users.length > 0 && 
         <div>
-          {users.map((u,i) => 
+          {users.length > 0 && users.map((u,i) => 
             <div className='sUser' key={i}>
               {cap(u.username)}
               {[...friends].map(f => f.users[0]).some(f => f.username === u.username) ?

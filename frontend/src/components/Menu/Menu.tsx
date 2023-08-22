@@ -65,10 +65,16 @@ const Menu = () => {
         </>
 
         :   
-        <div className='mField' onClick={() => locate('login')}>
-          <p>Login</p>
-        </div>
+        <>
+        
+          <div className='mField' onClick={() => locate('')}>
+            <p>Play</p>
+          </div>
 
+          <div className='mField' onClick={() => locate('login')}>
+            <p>Login</p>
+          </div>
+        </>
       }
       
     </div>

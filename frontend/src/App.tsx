@@ -18,7 +18,7 @@ const App = () => {
           <Route  path='/friend/:id/' component={() => <Friend setFriend={setFriend}/>}/> 
           <Route path='/new/:friend/:game' component={NewGame} />
           <Route path='/new/:friend' component={NewGame} />
-          <Route exact path='/' component={SoloGame}/> 
+          <Route path='/' component={SoloGame}/> 
 
         </Switch> 
       </div>

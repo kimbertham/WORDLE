@@ -2,19 +2,26 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Login = () => {
-  const [data,setData] = useState({ username: '', password: '' })
+  const [data,setData] = useState({ username: 'kim', password: '123' })
   const [login, setLogin] = useState(true)
   const [err, setErr] = useState<boolean>(false)
 
 
   useEffect(() => {
-    err && setErr(false)
-  },[data])
+    const timeout = setTimeout(() => {
+      err && setErr(false)
+    }, 500)
+  
+    return () => {
+      clearTimeout(timeout)
+    }
+  },[err])
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault()
       const res = await axios.post('api/login/', data)
+      console.log(res)
       window.localStorage.setItem('token', res.data.token)
       window.location.href = '/'
     } catch (err){
@@ -31,7 +38,6 @@ const Login = () => {
     } catch (err){
       console.log(err)
       setErr(true)
-
     }
   }
 
@@ -48,6 +54,7 @@ const Login = () => {
           autoComplete='off'
           autoCorrect='off'
           autoCapitalize= 'off'
+          value={data.username}
           onChange={(e) => setData({ ...data, username: e.target.value })}/>
 
         <input
@@ -57,6 +64,7 @@ const Login = () => {
           autoComplete='off'
           autoCorrect='off'
           autoCapitalize= 'off'
+          value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}/>
 
         {err && <small className='err'>Invalid! Try again...</small>}
