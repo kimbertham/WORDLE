@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFriendship = exports.getFriends = exports.newFriend = exports.totalScore = exports.declineRequest = exports.acceptRequest = exports.newFriendGame = exports.getFriendGames = void 0;
+exports.getFriendship = exports.getFriends = exports.newFriend = exports.totalScore = exports.declineRequest = exports.newInputGame = exports.getFriendGames = void 0;
 var models_1 = require("../models");
 var mongoose_1 = __importDefault(require("mongoose"));
 var getFriendGames = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -92,7 +92,6 @@ var getFriendGames = function (req, res) { return __awaiter(void 0, void 0, void
                     ])];
             case 1:
                 game = _a.sent();
-                console.log(game);
                 res.status(201).json(game);
                 return [3 /*break*/, 3];
             case 2:
@@ -105,62 +104,52 @@ var getFriendGames = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 exports.getFriendGames = getFriendGames;
-var newFriendGame = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var game, round, err_2;
+var newInputGame = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var lastGame, game, round, player2, game, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, models_1.gameModel.create(req.body)];
+                _a.trys.push([0, 8, , 9]);
+                return [4 /*yield*/, models_1.roundModel.find({ friendship: req.body.friendship })
+                        .limit(1)
+                        .sort({ $natural: -1 })];
             case 1:
+                lastGame = (_a.sent())[0];
+                if (!(!lastGame || lastGame.players.length === 2)) return [3 /*break*/, 4];
+                return [4 /*yield*/, models_1.gameModel.create(req.body)];
+            case 2:
                 game = (_a.sent());
                 return [4 /*yield*/, models_1.roundModel.create({ players: [game], friendship: req.body.friendship })];
-            case 2:
+            case 3:
                 round = _a.sent();
                 res.status(201).json(round);
-                return [3 /*break*/, 4];
-            case 3:
-                err_2 = _a.sent();
-                res.status(401).json(err_2);
-                console.log(err_2);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); };
-exports.newFriendGame = newFriendGame;
-var acceptRequest = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var player2, game, err_3;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, models_1.gameModel.create(req.body)];
-            case 1:
+                return [3 /*break*/, 7];
+            case 4: return [4 /*yield*/, models_1.gameModel.create(req.body)];
+            case 5:
                 player2 = _a.sent();
-                return [4 /*yield*/, models_1.roundModel.findByIdAndUpdate(req.params.id, { request: false,
-                        $push: { players: player2 } }, { new: true })
+                return [4 /*yield*/, models_1.roundModel.findByIdAndUpdate(lastGame.id, { request: false, $push: { players: player2 } }, { new: true })
                         .populate({ path: 'players',
                         populate: {
                             path: 'user',
                             model: 'User'
-                        } })];
-            case 2:
+                        }
+                    })];
+            case 6:
                 game = _a.sent();
                 res.status(201).json(game);
-                return [3 /*break*/, 4];
-            case 3:
-                err_3 = _a.sent();
-                res.status(401).json(err_3);
-                console.log(err_3);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                _a.label = 7;
+            case 7: return [3 /*break*/, 9];
+            case 8:
+                err_2 = _a.sent();
+                console.log(err_2);
+                return [3 /*break*/, 9];
+            case 9: return [2 /*return*/];
         }
     });
 }); };
-exports.acceptRequest = acceptRequest;
+exports.newInputGame = newInputGame;
 var declineRequest = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var game, err_4;
+    var game, err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -171,9 +160,9 @@ var declineRequest = function (req, res) { return __awaiter(void 0, void 0, void
                 res.status(201).json(game);
                 return [3 /*break*/, 3];
             case 2:
-                err_4 = _a.sent();
-                res.status(401).json(err_4);
-                console.log(err_4);
+                err_3 = _a.sent();
+                res.status(401).json(err_3);
+                console.log(err_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -181,7 +170,7 @@ var declineRequest = function (req, res) { return __awaiter(void 0, void 0, void
 }); };
 exports.declineRequest = declineRequest;
 var totalScore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var scores, err_5;
+    var scores, err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -259,9 +248,9 @@ var totalScore = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 res.status(201).json(scores);
                 return [3 /*break*/, 3];
             case 2:
-                err_5 = _a.sent();
-                res.status(401).json(err_5);
-                console.log(err_5);
+                err_4 = _a.sent();
+                res.status(401).json(err_4);
+                console.log(err_4);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -270,7 +259,7 @@ var totalScore = function (req, res) { return __awaiter(void 0, void 0, void 0, 
 exports.totalScore = totalScore;
 //------------
 var newFriend = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var users, friend, err_6;
+    var users, friend, err_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -282,9 +271,9 @@ var newFriend = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 res.status(201).json(friend);
                 return [3 /*break*/, 3];
             case 2:
-                err_6 = _a.sent();
-                res.status(401).json(err_6);
-                console.log(err_6);
+                err_5 = _a.sent();
+                res.status(401).json(err_5);
+                console.log(err_5);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -292,7 +281,7 @@ var newFriend = function (req, res) { return __awaiter(void 0, void 0, void 0, f
 }); };
 exports.newFriend = newFriend;
 var getFriends = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friends, err_7;
+    var friends, err_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -308,9 +297,9 @@ var getFriends = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 res.status(201).json(friends);
                 return [3 /*break*/, 3];
             case 2:
-                err_7 = _a.sent();
-                res.status(401).json(err_7);
-                console.log(err_7);
+                err_6 = _a.sent();
+                res.status(401).json(err_6);
+                console.log(err_6);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -318,7 +307,7 @@ var getFriends = function (req, res) { return __awaiter(void 0, void 0, void 0, 
 }); };
 exports.getFriends = getFriends;
 var getFriendship = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var friends, err_8;
+    var friends, err_7;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -330,9 +319,9 @@ var getFriendship = function (req, res) { return __awaiter(void 0, void 0, void 
                 res.status(201).json(friends);
                 return [3 /*break*/, 3];
             case 2:
-                err_8 = _a.sent();
-                res.status(401).json(err_8);
-                console.log(err_8);
+                err_7 = _a.sent();
+                res.status(401).json(err_7);
+                console.log(err_7);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

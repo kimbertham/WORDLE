@@ -75,7 +75,7 @@ var register = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                console.log(req.body);
+                console.log('called');
                 return [4 /*yield*/, userModel_1.userModel.create(req.body)];
             case 1:
                 user = _a.sent();

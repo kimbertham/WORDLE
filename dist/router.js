@@ -33,13 +33,12 @@ exports.router.route('/updateGame/:id')
 exports.router.route('/completeGame/:id')
     .post(secureRoute, soloControllers.completeGame);
 //----------------
-exports.router.route('/newFriendGame')
-    .post(secureRoute, friendControllers.newFriendGame);
+exports.router.route('/newInput')
+    .post(secureRoute, friendControllers.newInputGame);
 exports.router.route('/getFriendGames/:id')
     .post(secureRoute, friendControllers.getFriendGames);
-exports.router.route('/acceptRequest/:id')
-    .post(secureRoute, friendControllers.acceptRequest);
 exports.router.route('/declineRequest/:id')
     .get(secureRoute, friendControllers.declineRequest);
 exports.router.route('/totalScore/:id')
     .get(secureRoute, friendControllers.totalScore);
+//====

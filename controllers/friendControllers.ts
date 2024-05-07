@@ -5,7 +5,6 @@ import mongoose from 'mongoose'
 
 export const getFriendGames = async (req :ICustomReq, res:Response) => {
   try {
-
     const game = await roundModel.aggregate([
       { $match: { friendship: new mongoose.Types.ObjectId(req.params.id) } },
       { $sort: { createdAt: -1 } },

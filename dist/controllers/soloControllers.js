@@ -158,7 +158,6 @@ var getSoloGames = function (req, res) { return __awaiter(void 0, void 0, void 0
                         .limit(5)];
             case 1:
                 games = _a.sent();
-                console.log(games);
                 res.status(201).json(games);
                 return [3 /*break*/, 3];
             case 2:
